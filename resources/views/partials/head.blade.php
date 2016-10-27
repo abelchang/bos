@@ -19,4 +19,6 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 
-
+<meta property="og:image" content="http://www.haohouse1939.com/images/about.jpg" />
+<meta property="og:image:width" content="476"/>
+<link href="{{ asset('image/ios.png') }}" rel="apple-touch-icon" /> 
