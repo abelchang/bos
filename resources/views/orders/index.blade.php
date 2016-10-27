@@ -92,11 +92,13 @@ $nextDate = Carbon::createFromDate($thisYear,$thisMonth,'1')->addMonth();
         @endif
         
         @while ($thisDay->month == $thisMonth)
-        @if ( ($thisDay->dayOfWeek == (Carbon::FRIDAY)) || ($thisDay->dayOfWeek == (Carbon::SATURDAY)) )
-        <div class="panel panel-danger">
-            @else
+        @if($thisDay < Carbon::now())
             <div class="panel panel-default">
-                @endif
+        @elseif ( ($thisDay->dayOfWeek == (Carbon::FRIDAY)) || ($thisDay->dayOfWeek == (Carbon::SATURDAY)) )
+            <div class="panel panel-danger">
+        @else
+            <div class="panel panel-success">
+        @endif
                 
                 <div class="panel-heading">
                     <h3 class="panel-title">
