@@ -93,43 +93,40 @@ $nextDate = Carbon::createFromDate($thisYear,$thisMonth,'1')->addMonth();
         
         @while ($thisDay->month == $thisMonth)
         @if($thisDay < Carbon::now())
-            <div class="panel panel-default">
-        @elseif ( ($thisDay->dayOfWeek == (Carbon::FRIDAY)) || ($thisDay->dayOfWeek == (Carbon::SATURDAY)) )
+        <div class="panel panel-default">
+            @elseif ( ($thisDay->dayOfWeek == (Carbon::FRIDAY)) || ($thisDay->dayOfWeek == (Carbon::SATURDAY)) )
             <div class="panel panel-danger">
-        @else
-            <div class="panel panel-success">
-        @endif
-                
-                <div class="panel-heading">
-                    <h3 class="panel-title">
-                    <a data-toggle="collapse" href="#collapse{{$thisDay->month}}{{$thisDay->day}}">{{$thisDay->format('l m/d')}}
-                        @foreach ($orders as $key=>$order)
-                        @if( 
-                               ( 
-                                ( (Carbon::parse($order->checkin)->year === $thisDay->year) and (Carbon::parse($order->checkin)->month === $thisDay->month) ) 
-                                or( (Carbon::parse($order->checkout)->year === $thisDay->year) and (Carbon::parse($order->checkout)->month === $thisDay->month) ) 
-                                ) 
-                                    and ((Carbon::parse($order->checkin)->lte($thisDay)) and (Carbon::parse($order->checkout)->gt($thisDay)))     
+                @else
+                <div class="panel panel-success">
+                    @endif
+                    
+                    <div class="panel-heading">
+                        <h3 class="panel-title">
+                        <a data-toggle="collapse" href="#collapse{{$thisDay->month}}{{$thisDay->day}}">{{$thisDay->format('l m/d')}}
+                            @foreach ($orders as $key=>$order)
+                            @if(
+                            (
+                            ( (Carbon::parse($order->checkin)->year === $thisDay->year) and (Carbon::parse($order->checkin)->month === $thisDay->month) )
+                            or( (Carbon::parse($order->checkout)->year === $thisDay->year) and (Carbon::parse($order->checkout)->month === $thisDay->month) )
                             )
-                        <span class="badge">{{$order->orderRoom->name}}</span>
-                        @endif
-                        @endforeach
-                    </a>
-                    </h3>
-                </div>
-                @if($thisDay > Carbon::now())
-                <div id="collapse{{$thisDay->month}}{{$thisDay->day}}" class="panel-collapse collapse in">
-                    @else
-                    <div id="collapse{{$thisDay->month}}{{$thisDay->day}}" class="panel-collapse collapse">
-                        @endif
+                            and ((Carbon::parse($order->checkin)->lte($thisDay)) and (Carbon::parse($order->checkout)->gt($thisDay)))
+                            )
+                            <span class="badge">{{$order->orderRoom->name}}</span>
+                            @endif
+                            @endforeach
+                        </a>
+                        </h3>
+                    </div>
+                    
+                    <div id="collapse{{$thisDay->month}}{{$thisDay->day}}" class="panel-collapse collapse {{ (($thisDay->gte(Carbon::now())) ? 'in' : '') }}">
                         <div class="panel-body">
                             @foreach ($orders as $key=>$order)
-                            @if( 
-                               ( 
-                                ( (Carbon::parse($order->checkin)->year === $thisDay->year) and (Carbon::parse($order->checkin)->month === $thisDay->month) ) 
-                                or( (Carbon::parse($order->checkout)->year === $thisDay->year) and (Carbon::parse($order->checkout)->month === $thisDay->month) ) 
-                                ) 
-                                    and ((Carbon::parse($order->checkin)->lte($thisDay)) and (Carbon::parse($order->checkout)->gt($thisDay)))     
+                            @if(
+                            (
+                            ( (Carbon::parse($order->checkin)->year === $thisDay->year) and (Carbon::parse($order->checkin)->month === $thisDay->month) )
+                            or( (Carbon::parse($order->checkout)->year === $thisDay->year) and (Carbon::parse($order->checkout)->month === $thisDay->month) )
+                            )
+                            and ((Carbon::parse($order->checkin)->lte($thisDay)) and (Carbon::parse($order->checkout)->gt($thisDay)))
                             )
                             
                             <div class="panel panel-default col-md-3 col-xs-12">
@@ -207,24 +204,22 @@ $nextDate = Carbon::createFromDate($thisYear,$thisMonth,'1')->addMonth();
                     </div>
                 </div>
                 @endwhile
-
                 
             </div>
         </div>
 <script>
     $(function () {
-    $("[data-submit-confirm-text]").click(function(e){
-        var $el = $(this);
-        e.preventDefault();
-        var confirmText = $el.attr('data-submit-confirm-text');
-        bootbox.confirm(confirmText, function(result) {
+        $("[data-submit-confirm-text]").click(function(e){
+            var $el = $(this);
+            e.preventDefault();
+            var confirmText = $el.attr('data-submit-confirm-text');
+            bootbox.confirm(confirmText, function(result) {
             if (result) {
                 $el.closest('form').submit();
             }
+            });
         });
     });
-});
 </script>
-
-         
-        @endsection
+        
+@endsection

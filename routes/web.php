@@ -13,6 +13,8 @@
 
 Route::get('/', 'OrdersController@index');
 
+
+Route::get('orders/statistics/{thisYear?}/{thisMonth?}','OrdersController@statistics')->name('orders.statistics');
 Route::get('orders/showByMonth/{thisYear}/{thisMonth}','OrdersController@showByMonth')->name('orders.showByMonth');
 Route::resource('orders','OrdersController');
 Route::resource('rooms','RoomsController',['except'=>['index']]);
