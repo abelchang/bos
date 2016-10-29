@@ -21,15 +21,8 @@ $indexDate = Carbon::now()->addMonth(4);
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       
       <ul class="nav navbar-nav navbar-right">
+        <li><a href="{{route('orders.index')}}">當月訂單</a></li>
         <li><a href="{{route('orders.statistics')}}">統計資料</a></li>
-        <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">月份查詢 <span class="caret"></span></a>
-          <ul class="dropdown-menu">
-            @for($i = 0; $i <= 7; $i++)
-            <li><a href=" {{ route('orders.showByMonth',['thisYear'=>$indexDate->subMonth()->year, '$thisMonth'=>$indexDate->month]) }} "> {{$indexDate->year}}/{{$indexDate->month}} </a></li>
-            @endfor
-          </ul>
-        </li>
       </ul>
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->

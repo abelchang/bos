@@ -3,6 +3,7 @@
 @section('content')
 <?php
 use Carbon\Carbon;
+$indexDate = Carbon::now()->addMonth(4);
 $thisDay = Carbon::createFromDate($thisYear,$thisMonth,'1');
 $olderDate = Carbon::createFromDate($thisYear,$thisMonth,'1')->subMonth();
 $nextDate = Carbon::createFromDate($thisYear,$thisMonth,'1')->addMonth();
@@ -68,7 +69,18 @@ $nextDate = Carbon::createFromDate($thisYear,$thisMonth,'1')->addMonth();
         
         <h4>
         <div class="pull-right">
-            <a class="btn btn-xs btn-default" href="{{ route('orders.create') }}" style="margin-left: 20px;">
+            <div class="btn-group">
+              <button type="button" class="btn btn-xs btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i class="glyphicon glyphicon-search"></i>
+                月份查詢 <span class="caret"></span>
+              </button>
+              <ul class="dropdown-menu">
+                @for($i = 0; $i <= 7; $i++)
+                <li><a href=" {{ route('orders.showByMonth',['thisYear'=>$indexDate->subMonth()->year, '$thisMonth'=>$indexDate->month]) }} "> {{$indexDate->year}}/{{$indexDate->month}} </a></li>
+                @endfor
+              </ul>
+            </div>
+            <a class="btn btn-xs btn-danger" href="{{ route('orders.create') }}" style="margin-left: 20px;">
                 <i class="glyphicon glyphicon-plus"></i>
                 <span style="padding-left: 5px;">create order</span>
             </a>
