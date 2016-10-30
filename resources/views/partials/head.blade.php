@@ -5,6 +5,8 @@
 <!-- Optional theme -->
 <link rel="stylesheet" href="{{ asset('bower/bootstrap/dist/css/bootstrap-theme.min.css') }}" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
 <link rel="stylesheet" type="text/css" href="{{ asset('bower/eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.min.css') }}">
+<link rel="stylesheet" type="text/css" href="{{ asset('css/abel.css') }}">
+
 
 
 
