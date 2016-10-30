@@ -69,6 +69,10 @@ $nextDate = Carbon::createFromDate($thisYear,$thisMonth,'1')->addMonth();
         
         <h4>
         <div class="pull-right">
+            <a class="btn btn-xs btn-danger" href="{{ route('orders.create') }}" style="margin-left: 20px;">
+                <i class="glyphicon glyphicon-plus"></i>
+                <span style="padding-left: 5px;">新訂單</span>
+            </a>
             <div class="btn-group">
               <button type="button" class="btn btn-xs btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <i class="glyphicon glyphicon-search"></i>
@@ -80,10 +84,7 @@ $nextDate = Carbon::createFromDate($thisYear,$thisMonth,'1')->addMonth();
                 @endfor
               </ul>
             </div>
-            <a class="btn btn-xs btn-danger" href="{{ route('orders.create') }}" style="margin-left: 20px;">
-                <i class="glyphicon glyphicon-plus"></i>
-                <span style="padding-left: 5px;">create order</span>
-            </a>
+            
         </div>
         @if(isset($roomType))
         Room: {{$roomType->name}}
@@ -92,7 +93,7 @@ $nextDate = Carbon::createFromDate($thisYear,$thisMonth,'1')->addMonth();
         @elseif(isset($statusType))
         Status: {{$statusType->status}}
         @else
-        {{$thisYear}}/{{$thisMonth}}月訂單
+        {{$thisYear}}/{{$thisMonth}}月
         @endif
         
         </h4>
