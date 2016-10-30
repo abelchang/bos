@@ -17,6 +17,8 @@ $staDate = Carbon::now()->addMonth(4);
                 @for($i = 0; $i <= 7; $i++)
                 <li><a href=" {{ route('orders.statistics',['thisYear'=>$staDate->subMonth()->year, '$thisMonth'=>$staDate->month]) }} "> {{$staDate->year}}/{{$staDate->month}} </a></li>
                 @endfor
+                <li role="separator" class="divider"></li>
+                <li><a href=" {{ route('orders.statistics',['thisYear'=>Carbon::now()->year, '$thisMonth'=>'']) }} "> {{Carbon::now()->year}} </a></li>
             </ul>
         </div>
         <h1>{{ $thisYear }} / {{ $thisMonth }} 總結</h1>
