@@ -134,7 +134,7 @@ $nextDate = Carbon::createFromDate($thisYear,$thisMonth,'1')->addMonth();
                         </h3>
                     </div>
                     
-                    <div id="collapse{{$thisDay->month}}{{$thisDay->day}}" class="panel-collapse collapse {{ (($thisDay->gte(Carbon::now())) ? 'in' : '') }}">
+                    <div id="collapse{{$thisDay->year}}{{$thisDay->month}}{{$thisDay->day}}" class="panel-collapse collapse">
                         <div class="panel-body">
                             @foreach ($orders as $key=>$order)
                             @if(
