@@ -40,8 +40,13 @@ class OrdersController extends Controller
             $thisMonth = Carbon::now()->month;
         }
 
-        $orders = Orders::whereYear('checkin','=',$thisYear)->whereMonth('checkin','=',$thisMonth)->get();
-        $rooms = Rooms::orderBy('name','ASC')->get();
+        if (isset($thisYear) && !isset($thisMonth)) {
+            $orders = Orders::whereYear('checkin','=',$thisYear)->get();
+        } else {
+            $orders = Orders::whereYear('checkin','=',$thisYear)->whereMonth('checkin','=',$thisMonth)->get();
+        }
+        
+        $rooms = Rooms::orderBy('id','ASC')->get();
         $orderPlaces  = OrderPlace::orderBy('id','ASC')->get();
         $total = 0;
 

@@ -115,6 +115,10 @@ $nextDate = Carbon::createFromDate($thisYear,$thisMonth,'1')->addMonth();
                     <div class="panel-heading">
                         <h3 class="panel-title">
                         <a data-toggle="collapse" href="#collapse{{$thisDay->month}}{{$thisDay->day}}">{{$thisDay->format('l m/d')}}
+                            @if ($thisDay == Carbon::now())
+                                <span class="badge">Today</span>
+                            @endif
+
                             @foreach ($orders as $key=>$order)
                             @if(
                             (
