@@ -5,11 +5,20 @@
 <?php
 use Carbon\Carbon;
 $staDate = Carbon::now()->addMonth(4);
+$olderDate = Carbon::createFromDate($thisYear,$thisMonth,'1')->subMonth();
+$nextDate = Carbon::createFromDate($thisYear,$thisMonth,'1')->addMonth();
 ?>
 <div class="container">
+
     <div class="jumbotron col-md-6 col-md-offset-3 col-xs-12">
+        <nav aria-label="...">
+                <ul class="pager">
+                    <li class="previous"><a href="{{ route('orders.statistics',['thisYear'=>$olderDate->year,'thisMonth'=>$olderDate->month]) }}"><span aria-hidden="true">&larr;</span> Older</a></li>
+                    <li class="next"><a href="{{ route('orders.statistics',['thisYear'=>$nextDate->year,'thisMonth'=>$nextDate->month]) }}">Newer <span aria-hidden="true">&rarr;</span></a></li>
+                </ul>
+            </nav>
         <div class="btn-group">
-            <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <button type="button" class="btn btn-xs btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             <i class="glyphicon glyphicon-calendar"></i>
             其他月份 <span class="caret"></span>
             </button>
@@ -19,6 +28,7 @@ $staDate = Carbon::now()->addMonth(4);
                 @endfor
                 <li role="separator" class="divider"></li>
                 <li><a href=" {{ route('orders.statistics',['thisYear'=>Carbon::now()->year, '$thisMonth'=>'']) }} "> {{Carbon::now()->year}} </a></li>
+                <li><a href=" {{ route('orders.statistics',['thisYear'=>Carbon::now()->year, '$thisMonth'=>'']) }} "> {{Carbon::now()->subYear()->year}} </a></li>
             </ul>
         </div>
         <h1>{{ $thisYear }} / {{ $thisMonth }} 總結</h1>

@@ -3,6 +3,13 @@
 @section('title','new order')
 
 @section('content')
+
+<?php
+use Carbon\Carbon;
+$checkin = Carbon::createFromDate($thisYear,$thisMonth,$thisDay);
+$checkout = Carbon::createFromDate($thisYear,$thisMonth,$thisDay)->addDay();
+?>
+
 <div class="container">
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
@@ -17,11 +24,11 @@
                             <div class="form-group">
                                 <label for="title" class="col-sm-2 control-label">CheckIN</label>
                                 <div class="col-sm-4">
-                                    <input type="date" class="form-control " name="checkin" >
+                                    <input type="date" class="form-control " name="checkin" value="{{$checkin->year}}-{{$checkin->month}}-{{$checkin->day}}">
                                 </div>
                                 <label for="title" class="col-sm-2 control-label">ChechOut</label>
                                 <div class="col-sm-4">
-                                    <input type="date" class="form-control " name="checkout">
+                                    <input type="date" class="form-control " name="checkout" value="{{$checkout->year}}-{{$checkout->month}}-{{$checkout->day}}">
                                 </div>
                             </div>
                             <div class="form-group">
@@ -91,7 +98,7 @@
 							<div class="form-group">
 								<label for="content" class="col-sm-2 control-label">Birthday</label>
                                 <div class="col-sm-4">
-                                     <input type="date" class="form-control " name="birthday" value = "1939-01-01">
+                                     <input type="date" class="form-control " name="birthday" value = "1984-01-01">
                                 </div>
                                 <label for="content" class="col-sm-2 control-label">Place Of Birth</label>
                                 <div class="col-sm-4">
@@ -117,4 +124,19 @@
         </div>
     </div>
 </div>
+
+<script type="text/javascript">
+    $(function () {
+
+
+        if ( $('[type="date"]').prop('type') != 'date' ) {
+                $('[type="date"]').datetimepicker({
+                    format: 'YYYY/MM/DD',
+                    keepInvalid: true,
+                    
+                });
+        }
+    });
+
+</script>
 @endsection

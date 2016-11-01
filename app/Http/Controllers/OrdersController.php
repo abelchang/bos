@@ -97,21 +97,24 @@ class OrdersController extends Controller
         return view('orders.index',[  'thisYear'=>$thisYear ,'thisMonth'=>$thisMonth, 'orders'=>$orders,'rooms'=>$rooms,'orderStatus'=>$orderStatus,'orderPlaces'=>$orderPlaces]);
     }
 
-    public function create() {
+    public function create($thisYear = null,$thisMonth = null,$thisDay = null) {
+        if(!isset($thisMonth)) {
+            $thisMonth = Carbon::now()->month;
+        } 
+
+        if(!isset($thisYear)) {
+            $thisYear = Carbon::now()->year;
+        }
+
+        if(!isset($thisDay)) {
+            $thisDay = Carbon::now()->day;
+        }
+
     	$rooms = Rooms::orderBy('name','ASC')->get();
     	$orderStatus = OrderStatus::orderBy('id','ASC')->get();
     	$orderPlaces  = OrderPlace::orderBy('id','ASC')->get();
 
-    	return view('orders.create',['rooms'=>$rooms,'orderStatus'=>$orderStatus,'orderPlaces'=>$orderPlaces]);
-    }
-
-    public function store(Request $request) {
-    	$order = new Orders($request->all());
-        if(!isset($order->birthday)) {
-            $order->birthday = Carbon::create(2012, 1, 31, 0);
-        }
-    	$order->save();
-    	return Redirect::route('orders.index');
+    	return view('orders.create',['thisYear'=>$thisYear ,'thisMonth'=>$thisMonth,'thisDay'=>$thisDay ,'rooms'=>$rooms,'orderStatus'=>$orderStatus,'orderPlaces'=>$orderPlaces]);
     }
 
     public function edit($id) {
@@ -124,12 +127,23 @@ class OrdersController extends Controller
 
     }
 
+    public function store(Request $request) {
+        $order = new Orders($request->all());
+        if(!isset($order->birthday)) {
+            $order->birthday = Carbon::create(2012, 1, 31, 0);
+        }
+        $order->save();
+        $orderDate = Carbon::parse($order->checkin);
+        return Redirect::route('orders.showByMonth',['thisYear'=>$orderDate->year,'thisMonth'=>$orderDate->month]);
+    }
+
     public function update(OrderRequest $request, $id)
     {
         $order = Orders::findOrFail($id);
         $order->fill($request->all());
         $order->save();
-        return Redirect::route('orders.index');
+        $orderDate = Carbon::parse($order->checkin);
+        return Redirect::route('orders.showByMonth',['thisYear'=>$orderDate->year,'thisMonth'=>$orderDate->month]);
     }
 
     public function destroy($id)

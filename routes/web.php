@@ -15,8 +15,9 @@ Route::get('/', 'OrdersController@index');
 
 
 Route::get('orders/statistics/{thisYear?}/{thisMonth?}','OrdersController@statistics')->name('orders.statistics');
+Route::get('orders/create/{thisYear?}/{thisMonth?}/{thisDay?}','OrdersController@create')->name('orders.create');
 Route::get('orders/showByMonth/{thisYear}/{thisMonth}','OrdersController@showByMonth')->name('orders.showByMonth');
-Route::resource('orders','OrdersController');
+Route::resource('orders','OrdersController',['except'=>['create']]);
 Route::resource('rooms','RoomsController',['except'=>['index']]);
 Route::resource('orderStatus','OrderStatusController',['except'=>['index']]);
 Route::resource('orderPlace','OrderPlaceController',['except'=>['index']]);
