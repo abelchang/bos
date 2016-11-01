@@ -131,10 +131,12 @@ $nextDate = Carbon::createFromDate($thisYear,$thisMonth,'1')->addMonth();
                             <span class="badge">{{$order->orderRoom->name}}</span>
                             @endif
                             @endforeach
+
+                            @if($thisDay != Carbon::now())
                             <a class="btn btn-xs btn-danger pull-right" href="{{ route('orders.create',['thisYear'=>$thisDay->year ,'thisMonth'=>$thisDay->month ,'thisDay'=>$thisDay->day]) }}" style="margin-left: 20px; color: white;">
-                                <i class="glyphicon glyphicon-plus"></i>
-                                        
+                                <i class="glyphicon glyphicon-plus"></i>                      
                             </a>
+                            @endif
  
                         
                         </a>
