@@ -36,28 +36,40 @@ $nextDate = Carbon::createFromDate($thisYear,$thisMonth,'1')->addMonth();
             Total : {{$total}}
         </p>
         <!-- Single button -->
-        <div class="panel panel-success">
+        <div class="panel panel-success" id="orderRooms">
             <!-- Default panel contents -->
             <div class="panel-heading">房型</div>
             <ul class="list-group">
+                <?php $countTotal = 0; ?>
                 @foreach($roomSta as $roomName => $count)
-                <li class="list-group-item">
+                <a href="#orderRooms" class="list-group-item">
                     <span class="badge">{{$count}}</span>
                     {{$roomName}}
-                </li>
+                    <?php $countTotal+=$count; ?>
+                </a>
                 @endforeach
+                <li class="list-group-item list-group-item-warning">
+                    <span class="badge">{{$countTotal}}</span>
+                    Total
+                </li>
             </ul>
         </div>
-        <div class="panel panel-info">
+        <div class="panel panel-info" id="orderPlace">
             <!-- Default panel contents -->
             <div class="panel-heading">訂單管道</div>
             <ul class="list-group">
+                <?php $countTotal = 0; ?>
                 @foreach($placeSta as $placeName => $count)
-                <li class="list-group-item">
+                <a href="#orderPlace" class="list-group-item">
                     <span class="badge">{{$count}}</span>
                     {{$placeName}}
-                </li>
+                    <?php $countTotal+=$count; ?>
+                </a>
                 @endforeach
+                <li class="list-group-item list-group-item-warning">
+                    <span class="badge">{{$countTotal}}</span>
+                    Total
+                </li>
             </ul>
         </div>
     </div>

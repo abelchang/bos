@@ -16,57 +16,6 @@ $nextDate = Carbon::createFromDate($thisYear,$thisMonth,'1')->addMonth();
         </ul>
     </nav>
     <div class="row">
-        <!-- <div class="btn-group">
-            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Rooms
-            <span class="caret"></span>
-            </button>
-            <ul class="dropdown-menu">
-                <li><a href="{{ route('orders.index') }}" >All Rooms</a></li>
-                @foreach ($rooms as $room)
-                <li><a href="{{ route('rooms.show',['roomsType'=>$room->id]) }}" >
-                    {{ $room->name }}
-                </a></li>
-                @endforeach
-                <li>
-                    <a href="{{ route('rooms.create') }}" class="list-group-item">create new room</a>
-                </li>
-            </ul>
-        </div>
-        <div class="btn-group">
-            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">OrderPlace
-            <span class="caret"></span>
-            </button>
-            <ul class="dropdown-menu">
-                <li><a href="{{ route('orders.index') }}" >All OrderPlace</a></li>
-                @foreach ($orderPlaces as $orderPlace)
-                <li><a href="{{ route('orderPlace.show',['placeType'=>$orderPlace->id]) }}" >
-                    {{ $orderPlace->name }}
-                </a></li>
-                @endforeach
-                <li>
-                    <a href="{{ route('orderPlace.create') }}" class="list-group-item">create new place</a>
-                </li>
-            </ul>
-        </div>
-        <div class="btn-group">
-            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">OrderStatus
-            <span class="caret"></span>
-            </button>
-            <ul class="dropdown-menu">
-                <li>
-                    <a href="{{ route('orders.index') }}">All Status</a>
-                </li>
-                @foreach ($orderStatus as $orderStatusOne)
-                <li><a href="{{ route('orderStatus.show',['statusType'=>$orderStatusOne->id]) }}" >
-                    {{ $orderStatusOne->status }}
-                </a></li>
-                @endforeach
-                <li>
-                    <a href="{{ route('orderStatus.create') }}" class="list-group-item">create new status</a>
-                </li>
-            </ul>
-        </div> -->
-        
         <h4>
         <div class="pull-right">
             <a class="btn btn-xs btn-danger" href="{{ route('orders.create') }}" style="margin-left: 20px;">
