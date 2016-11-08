@@ -23,4 +23,4 @@
 
 <meta property="og:image" content="http://www.haohouse1939.com/images/about.jpg" />
 <meta property="og:image:width" content="476"/>
-<link href="{{ asset('image/ios.png') }}" rel="apple-touch-icon" /> 
+<link href="{{ asset('image/icon1white.png') }}" rel="apple-touch-icon" /> 
