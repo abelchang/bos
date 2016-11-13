@@ -4,6 +4,8 @@
 
 @section('content')
 
+<script src="{{ asset('bower/jquery/dist/jquery.min.js') }}"></script>
+
 <?php
 use Carbon\Carbon;
 $checkin = Carbon::createFromDate($thisYear,$thisMonth,$thisDay);
@@ -24,11 +26,11 @@ $checkout = Carbon::createFromDate($thisYear,$thisMonth,$thisDay)->addDay();
                             <div class="form-group">
                                 <label for="title" class="col-sm-2 control-label">CheckIN</label>
                                 <div class="col-sm-4">
-                                    <input type="date" class="form-control " name="checkin" value="{{$checkin->year}}-{{$checkin->month}}-{{$checkin->day}}">
+                                    <input type="date" class="form-control " id="checkin" name="checkin" value="{{$checkin->toDateString()}}">
                                 </div>
                                 <label for="title" class="col-sm-2 control-label">ChechOut</label>
                                 <div class="col-sm-4">
-                                    <input type="date" class="form-control " name="checkout" value="{{$checkout->year}}-{{$checkout->month}}-{{$checkout->day}}">
+                                    <input type="date" class="form-control " id="checkout" name="checkout" value="{{$checkout->toDateString()}}">
                                 </div>
                             </div>
                             <div class="form-group">
@@ -125,18 +127,4 @@ $checkout = Carbon::createFromDate($thisYear,$thisMonth,$thisDay)->addDay();
     </div>
 </div>
 
-<script type="text/javascript">
-    $(function () {
-
-
-        if ( $('[type="date"]').prop('type') != 'date' ) {
-                $('[type="date"]').datetimepicker({
-                    format: 'YYYY/MM/DD',
-                    keepInvalid: true,
-                    
-                });
-        }
-    });
-
-</script>
 @endsection

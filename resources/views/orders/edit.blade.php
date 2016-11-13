@@ -3,6 +3,9 @@
 @section('title','edit order')
 
 @section('content')
+
+<script src="{{ asset('bower/jquery/dist/jquery.min.js') }}"></script>
+
 <div class="container">
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
@@ -120,17 +123,5 @@
     </div>
 </div>
 
-<script type="text/javascript">
-    $(function () {
 
-
-        if ( $('[type="date"]').prop('type') != 'date' ) {
-                $('[type="date"]').datetimepicker({
-                    format: 'YYYY/MM/DD',
-                    
-                });
-        }
-    });
-
-</script>
 @endsection
