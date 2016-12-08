@@ -54,8 +54,34 @@ $nextDate = Carbon::createFromDate($thisYear,$thisMonth,'1')->addMonth();
         @endif
         
         @while ($thisDay->month == $thisMonth)
+        <section id="{{ $thisDay->toDateString() }}">
         @if($thisDay < Carbon::now())
         <div class="panel panel-default">
+            <!-- 2017 元旦 2016/12/31 - 01/02 -->
+            @elseif ( $thisDay->between(Carbon::create(2016, 12, 31), Carbon::create(2017, 1, 2)) )
+            <div class="panel panel-danger">
+            <!-- 2017 春節 01/27 - 02/01 -->
+            @elseif ( $thisDay->between(Carbon::create(2017, 1, 27), Carbon::create(2017, 2, 1)) )
+            <div class="panel panel-danger">
+            <!-- 2017 228紀念日 02/25 - 02/28 -->
+            @elseif ( $thisDay->between(Carbon::create(2017, 2, 25), Carbon::create(2017, 2, 28)) )
+            <div class="panel panel-danger">
+            <!-- 2017 兒童節 04/01 - 04/04 -->
+            @elseif ( $thisDay->between(Carbon::create(2017, 4, 1), Carbon::create(2017, 4, 4)) )
+            <div class="panel panel-danger">
+            <!-- 2017 勞動節 04/29 - 05/01 -->
+            @elseif ( $thisDay->between(Carbon::create(2017, 4, 29), Carbon::create(2017, 5, 1)) )
+            <div class="panel panel-danger">
+            <!-- 2017 端午節 05/27 - 05/30 -->
+            @elseif ( $thisDay->between(Carbon::create(2017, 5, 27), Carbon::create(2017, 5, 30)) )
+            <div class="panel panel-danger">
+            <!-- 2017 中秋節 10/04 -->
+            @elseif ( $thisDay == (Carbon::create(2017, 10, 4)) )
+            <div class="panel panel-danger">
+            <!-- 2017 國慶日 10/07 - 10/10 -->
+            @elseif ( $thisDay->between(Carbon::create(2017, 10, 7), Carbon::create(2017, 10, 10)) )
+            <div class="panel panel-danger">
+            <!-- 一般週末 -->
             @elseif ( ($thisDay->dayOfWeek == (Carbon::FRIDAY)) || ($thisDay->dayOfWeek == (Carbon::SATURDAY)) )
             <div class="panel panel-danger">
                 @else
@@ -68,6 +94,31 @@ $nextDate = Carbon::createFromDate($thisYear,$thisMonth,'1')->addMonth();
                             @if ($thisDay == Carbon::now())
                                 <span class="badge">Today</span>
                             @endif
+                            <!-- 2017 元旦 2016/12/31 - 01/02 -->
+                            @if ( $thisDay->between(Carbon::create(2016, 12, 31), Carbon::create(2017, 1, 2)) )
+                                <span class="badge">元旦</span>
+                            <!-- 2017 春節 01/27 - 02/01 -->
+                            @elseif ( $thisDay->between(Carbon::create(2017, 1, 27), Carbon::create(2017, 2, 1)) )
+                                <span class="badge">春節</span>
+                            <!-- 2017 228紀念日 02/25 - 02/28 -->
+                            @elseif ( $thisDay->between(Carbon::create(2017, 2, 25), Carbon::create(2017, 2, 28)) )
+                                <span class="badge">228</span>
+                            <!-- 2017 兒童節 04/01 - 04/04 -->
+                            @elseif ( $thisDay->between(Carbon::create(2017, 4, 1), Carbon::create(2017, 4, 4)) )
+                                <span class="badge">兒童節</span>
+                            <!-- 2017 勞動節 04/29 - 05/01 -->
+                            @elseif ( $thisDay->between(Carbon::create(2017, 4, 29), Carbon::create(2017, 5, 1)) )
+                                <span class="badge">勞動節</span>
+                            <!-- 2017 端午節 05/27 - 05/30 -->
+                            @elseif ( $thisDay->between(Carbon::create(2017, 5, 27), Carbon::create(2017, 5, 30)) )
+                                <span class="badge">端午節</span>
+                            <!-- 2017 中秋節 10/04 -->
+                            @elseif ( $thisDay == (Carbon::create(2017, 10, 4)) )
+                                <span class="badge">中秋節</span>
+                            <!-- 2017 國慶日 10/07 - 10/10 -->
+                            @elseif ( $thisDay->between(Carbon::create(2017, 10, 7), Carbon::create(2017, 10, 10)) )
+                                <span class="badge">國慶日</span>
+                            @endif   
 
                             @foreach ($orders as $key=>$order)
                             @if(
@@ -177,6 +228,7 @@ $nextDate = Carbon::createFromDate($thisYear,$thisMonth,'1')->addMonth();
                         </div>
                     </div>
                 </div>
+                </section>
                 @endwhile
                 
             </div>
