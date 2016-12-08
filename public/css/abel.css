@@ -12,6 +12,9 @@ body { padding-top: 70px; }
     font-size: 2em;
     z-index: 100;
 }
+#gotop-right a {
+	color: grey;
+}
 
 #gotop-left {
     display: none;
@@ -20,4 +23,8 @@ body { padding-top: 70px; }
     top: 50%;
     font-size: 2em;
 	z-index: 100;
+}
+
+#gotop-left a {
+	color: grey;
 }
