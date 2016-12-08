@@ -8,7 +8,7 @@ body { padding-top: 70px; }
     display: none;
     position: fixed;
     right: 0.5em;
-    top: 3.5em;
+    top: 50%;
     font-size: 0.7em;
     z-index: 100;
 }
@@ -17,7 +17,7 @@ body { padding-top: 70px; }
     display: none;
     position: fixed;
     left: 0.5em;
-    top: 3.5em;
+    top: 50%;
     font-size: 0.7em;
 	z-index: 100;
 }
