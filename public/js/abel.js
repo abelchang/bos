@@ -8,7 +8,7 @@ $(function () {
 
 $(function(){
     $(window).scroll(function() {
-        if ( $(this).scrollTop() > 300){
+        if ( $(this).scrollTop() > 150){
             $('#gotop-right').fadeIn("fast");
             $('#gotop-left').fadeIn("fast");
         } else {
