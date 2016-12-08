@@ -16,14 +16,10 @@ $nextDate = Carbon::createFromDate($thisYear,$thisMonth,'1')->addMonth();
         </ul>
     </nav>
     <div id="gotop-left">
-        <ul class="pager">
-            <li class="previous"><a href="{{ route('orders.showByMonth',['thisYear'=>$olderDate->year,'thisMonth'=>$olderDate->month]) }}"><span aria-hidden="true">&larr;</span></a></li>
-        </ul>
+        <a href="{{ route('orders.showByMonth',['thisYear'=>$olderDate->year,'thisMonth'=>$olderDate->month]) }}"><i class="fa fa-angle-left" aria-hidden="true"></i></a>
     </div>
     <div id="gotop-right">
-        <ul class="pager">
-            <li class="next"><a href="{{ route('orders.showByMonth',['thisYear'=>$nextDate->year,'thisMonth'=>$nextDate->month]) }}"><span aria-hidden="true">&rarr;</span></a></li>
-        </ul>
+        <a href="{{ route('orders.showByMonth',['thisYear'=>$nextDate->year,'thisMonth'=>$nextDate->month]) }}"><i class="fa fa-angle-right" aria-hidden="true"></i></a>
     </div>
 
     <div class="row">
