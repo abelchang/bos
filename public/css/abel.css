@@ -7,7 +7,7 @@ body { padding-top: 70px; }
 #gotop-right {
     display: none;
     position: fixed;
-    right: 2em;
+    right: 10px;
     top: 50%;
     font-size: 2em;
     z-index: 100;
@@ -16,7 +16,7 @@ body { padding-top: 70px; }
 #gotop-left {
     display: none;
     position: fixed;
-    left: 2em;
+    left: 10px;
     top: 50%;
     font-size: 2em;
 	z-index: 100;
