@@ -5,3 +5,15 @@ $(function () {
 		});
 	}
 });
+
+$(function(){
+    $(window).scroll(function() {
+        if ( $(this).scrollTop() > 300){
+            $('#gotop-right').fadeIn("fast");
+            $('#gotop-left').fadeIn("fast");
+        } else {
+            $('#gotop-right').stop().fadeOut("fast");
+            $('#gotop-left').stop().fadeOut("fast");
+        }
+    });
+});

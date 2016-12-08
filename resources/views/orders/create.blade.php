@@ -4,7 +4,6 @@
 
 @section('content')
 
-<script src="{{ asset('bower/jquery/dist/jquery.min.js') }}"></script>
 
 <?php
 use Carbon\Carbon;

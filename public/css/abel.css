@@ -1,1 +1,23 @@
 body { padding-top: 70px; }
+
+.label-as-badge {
+    border-radius: 1em;
+}
+
+#gotop-right {
+    display: none;
+    position: fixed;
+    right: 20px;
+    bottom: 20px;
+    padding: 10px 15px;
+    font-size: 0.7em;
+}
+
+#gotop-left {
+    display: none;
+    position: fixed;
+    left: 20px;
+    bottom: 20px;
+    padding: 10px 15px;
+    font-size: 0.7em;
+}

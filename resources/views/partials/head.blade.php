@@ -17,6 +17,8 @@
 <script type="text/javascript" src="{{ asset('bower/moment/min/moment.min.js') }}" ></script>
 <script type="text/javascript" src=" {{ asset('bower/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js') }} " ></script>
 <script src="{{ asset('bower/bootbox.js/bootbox.js') }} "></script>
+<script src="{{ asset('js/abel.js') }} "></script>
+
 
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
