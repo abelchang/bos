@@ -7,17 +7,15 @@ body { padding-top: 70px; }
 #gotop-right {
     display: none;
     position: fixed;
-    right: 20px;
-    bottom: 20px;
-    padding: 10px 15px;
+    right: 0.5em;
+    top: 3.5em;
     font-size: 0.7em;
 }
 
 #gotop-left {
     display: none;
     position: fixed;
-    left: 20px;
-    bottom: 20px;
-    padding: 10px 15px;
+    left: 0.5em;
+    top: 3.5em;
     font-size: 0.7em;
 }
