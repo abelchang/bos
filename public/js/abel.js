@@ -24,13 +24,13 @@ $(function() {
         //Single swipe handler for left swipes
         swipeLeft:function(event, direction, distance, duration, fingerCount) {
         	
-          $('#previousLink')[0].click(); 
+          $('#nextLink')[0].click();
         },
         swipeRight:function(event, direction, distance, duration, fingerCount) {
         
-          $('#nextLink')[0].click(); 
+          $('#previousLink')[0].click();
         },
         //Default is 75px, set to 0 for demo so any distance triggers swipe
-        threshold: 100
+        threshold: 120
       });
     });
