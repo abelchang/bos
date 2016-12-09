@@ -1,0 +1,28 @@
+{
+  "name": "bos",
+  "description": "",
+  "main": "",
+  "authors": [
+    "Abel Chang <ccabel42@gmail.com>"
+  ],
+  "license": "MIT",
+  "homepage": "https://github.com/abelchang/bos",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "public/bower",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "eonasdan-bootstrap-datetimepicker": "~4.17.43",
+    "bootbox.js": "bootbox#^4.4.0",
+    "bootstrap": "~3.3.7",
+    "font-awesome": "fontawesome#^4.7.0",
+    "swipe-js": "^2.2.3",
+    "moment": "^2.15.2",
+    "jquery-mobile": "^1.4.5",
+    "jquery-touchswipe": "^1.6.18"
+  }
+}

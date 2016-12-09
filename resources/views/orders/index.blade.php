@@ -8,11 +8,11 @@ $thisDay = Carbon::createFromDate($thisYear,$thisMonth,'1');
 $olderDate = Carbon::createFromDate($thisYear,$thisMonth,'1')->subMonth();
 $nextDate = Carbon::createFromDate($thisYear,$thisMonth,'1')->addMonth();
 ?>
-<div class="container">
-    <nav aria-label="...">
-        <ul class="pager">
-            <li class="previous"><a href="{{ route('orders.showByMonth',['thisYear'=>$olderDate->year,'thisMonth'=>$olderDate->month]) }}"><span aria-hidden="true">&larr;</span> Older</a></li>
-            <li class="next"><a href="{{ route('orders.showByMonth',['thisYear'=>$nextDate->year,'thisMonth'=>$nextDate->month]) }}">Newer <span aria-hidden="true">&rarr;</span></a></li>
+<div class="container" id="swipePage">
+    <nav aria-label="..." >
+        <ul class="pager" >
+            <li class="previous"><a id="previousLink" href="{{ route('orders.showByMonth',['thisYear'=>$olderDate->year,'thisMonth'=>$olderDate->month]) }}"><span aria-hidden="true">&larr;</span> Older</a></li>
+            <li class="next"><a  id="nextLink" href="{{ route('orders.showByMonth',['thisYear'=>$nextDate->year,'thisMonth'=>$nextDate->month]) }}">Newer <span aria-hidden="true">&rarr;</span></a></li>
         </ul>
     </nav>
     <div id="gotop-left">
