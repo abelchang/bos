@@ -4,6 +4,20 @@ $(function () {
 			format: 'YYYY/MM/DD',
 		});
 	}
+
+
+	$(".overDateOrders").hide();
+	$("#showOrders").click(function(){
+	    $(".overDateOrders").slideToggle("normal",function() {
+	    	if($('.overDateOrders').is(':visible')) {
+		    	$('#showOrders > span').text("隱藏過去訂單");
+		    } else {
+		    	$('#showOrders > span').text("顯示過去訂單");
+		    }
+	    });
+	    
+	  });
+	
 });
 
 $(function(){
@@ -31,6 +45,7 @@ $(function() {
           $('#previousLink')[0].click();
         },
         //Default is 75px, set to 0 for demo so any distance triggers swipe
+        maxTimeThreshold:5000,
         threshold: 120
-      });
-    });
+   	});
+});
