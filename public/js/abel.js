@@ -10,9 +10,9 @@ $(function () {
 	$("#showOrders").click(function(){
 	    $(".overDateOrders").slideToggle("normal",function() {
 	    	if($('.overDateOrders').is(':visible')) {
-		    	$('#showOrders > span').text("隱藏過去訂單");
+		    	$('#showOrders > span').text("-");
 		    } else {
-		    	$('#showOrders > span').text("顯示過去訂單");
+		    	$('#showOrders > span').text("+");
 		    }
 	    });
 	    

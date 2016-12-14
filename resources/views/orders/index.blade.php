@@ -52,10 +52,9 @@ $nextDate = Carbon::createFromDate($thisYear,$thisMonth,'1')->addMonth();
         {{$thisYear}}/{{$thisMonth}}月
         @endif
 
-        @if(count($orders) > 0)
+        @if((count($orders) > 0) and ($thisDay->month == Carbon::now()->month))
         <a class="btn btn-xs btn-default" id="showOrders" style="margin-left: 20px;">
-            <i class="glyphicon glyphicon-plus"></i>
-            <span style="padding-left: 5px;">顯示過去訂單</span>
+            <span>+</span>
         </a>
         @endif
         
@@ -68,7 +67,7 @@ $nextDate = Carbon::createFromDate($thisYear,$thisMonth,'1')->addMonth();
         @endif
         
         @while ($thisDay->month == $thisMonth)
-        <section id="{{ $thisDay->toDateString() }}" class="{{($thisDay < Carbon::now())?'overDateOrders':''}}" >
+        <section id="{{ $thisDay->toDateString() }}" class="{{ ( ($thisDay < Carbon::now()) and ($thisDay->month == Carbon::now()->month) )?'overDateOrders':''}}" >
         @if($thisDay < Carbon::now())
         <div class="panel panel-default">
             <!-- 2017 元旦 2016/12/31 - 01/02 -->
