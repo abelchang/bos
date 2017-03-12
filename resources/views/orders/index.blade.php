@@ -23,8 +23,6 @@ $nextDate = Carbon::createFromDate($thisYear,$thisMonth,'1')->addMonth();
     </div>
 
     <div class="row">
-        {{ App::getLocale() }}
-        {{ trans('auth.failed') }}
         <h4>
         <div class="pull-right">
             <a class="btn btn-xs btn-danger" href="{{ route('orders.create') }}" style="margin-left: 20px;">
