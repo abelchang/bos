@@ -10,7 +10,8 @@
         "nesbot/carbon": "^1.21",
         "twbs/bootstrap": "^3.3",
         "filp/whoops": "^2.1",
-        "barryvdh/laravel-debugbar": "^2.3"
+        "barryvdh/laravel-debugbar": "^2.3",
+        "zizaco/entrust": "5.2.x-dev"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",

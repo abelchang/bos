@@ -23,6 +23,8 @@ $nextDate = Carbon::createFromDate($thisYear,$thisMonth,'1')->addMonth();
     </div>
 
     <div class="row">
+        {{ App::getLocale() }}
+        {{ trans('auth.failed') }}
         <h4>
         <div class="pull-right">
             <a class="btn btn-xs btn-danger" href="{{ route('orders.create') }}" style="margin-left: 20px;">
@@ -43,13 +45,13 @@ $nextDate = Carbon::createFromDate($thisYear,$thisMonth,'1')->addMonth();
             
         </div>
         @if(isset($roomType))
-        Room: {{$roomType->name}}
+            Room: {{$roomType->name}}
         @elseif(isset($placeType))
-        Order Place: {{$placeType->name}}
+            Order Place: {{$placeType->name}}
         @elseif(isset($statusType))
-        Status: {{$statusType->status}}
+            Status: {{$statusType->status}}
         @else
-        {{$thisYear}}/{{$thisMonth}}月
+            {{$thisYear}}/{{$thisMonth}}月
         @endif
 
         @if((count($orders) > 0) and ($thisDay->month == Carbon::now()->month))

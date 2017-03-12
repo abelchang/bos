@@ -11,9 +11,9 @@
 |
 */
 
+
+Auth::routes();
 Route::get('/', 'OrdersController@index');
-
-
 Route::get('orders/statistics/{thisYear?}/{thisMonth?}','OrdersController@statistics')->name('orders.statistics');
 Route::get('orders/create/{thisYear?}/{thisMonth?}/{thisDay?}','OrdersController@create')->name('orders.create');
 Route::get('orders/showByMonth/{thisYear}/{thisMonth}','OrdersController@showByMonth')->name('orders.showByMonth');
@@ -23,4 +23,10 @@ Route::resource('orderStatus','OrderStatusController',['except'=>['index']]);
 Route::resource('orderPlace','OrderPlaceController',['except'=>['index']]);
 
 
+Route::get('user/activation/{token}', 'Auth\LoginController@activateUser')->name('user.activate');
 
+Route::get('/home', 'HomeController@index');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index');

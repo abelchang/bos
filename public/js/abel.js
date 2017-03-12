@@ -46,6 +46,6 @@ $(function() {
         },
         //Default is 75px, set to 0 for demo so any distance triggers swipe
         maxTimeThreshold:5000,
-        threshold: 120
+        threshold: 200
    	});
 });
