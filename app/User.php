@@ -28,6 +28,11 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
+    public function bnb()
+    {
+        return $this->hasMany('App\BnB');
+    }
+
 
     public function roles() {
         return $this->belongsToMany(Role::class);

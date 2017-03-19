@@ -21,6 +21,7 @@ Route::resource('orders','OrdersController',['except'=>['create']]);
 Route::resource('rooms','RoomsController',['except'=>['index']]);
 Route::resource('orderStatus','OrderStatusController',['except'=>['index']]);
 Route::resource('orderPlace','OrderPlaceController',['except'=>['index']]);
+Route::resource('bnb','BnBController');
 
 
 Route::get('user/activation/{token}', 'Auth\LoginController@activateUser')->name('user.activate');

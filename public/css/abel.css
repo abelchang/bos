@@ -28,3 +28,11 @@ body { padding-top: 70px; }
 #gotop-left a {
 	color: grey;
 }
+
+.holidayBadge {
+    margin-left: 0.5em;
+}
+
+.roomsBadge {
+    margin-top: 0.6em;
+}

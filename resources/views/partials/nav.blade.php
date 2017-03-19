@@ -34,6 +34,8 @@ $indexDate = Carbon::now()->addMonth(4);
                 </a>
 
                 <ul class="dropdown-menu" role="menu">
+                    <li><a href="{{route('bnb.index')}}">bnb</a></li>
+                    <li><a href="{{route('bnb.create')}}">bnb create</a></li>
                     <li>
                         <a href="{{ url('/logout') }}"
                             onclick="event.preventDefault();

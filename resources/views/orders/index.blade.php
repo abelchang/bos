@@ -105,34 +105,39 @@ $nextDate = Carbon::createFromDate($thisYear,$thisMonth,'1')->addMonth();
                         <h3 class="panel-title">
                         <a data-toggle="collapse" href="#collapse{{$thisDay->year}}{{$thisDay->month}}{{$thisDay->day}}">{{$thisDay->format('l m/d')}}
                             @if ($thisDay == Carbon::now())
-                                <span class="label label-default label-as-badge">Today</span>
+                                <span class="label label-default label-as-badge holidayBadge">Today</span>
                             @endif
                             <!-- 2017 元旦 2016/12/31 - 01/02 -->
                             @if ( $thisDay->between(Carbon::create(2016, 12, 31), Carbon::create(2017, 1, 2)) )
-                                <span class="label label-primary label-as-badge">元旦</span>
+                                <span class="label label-primary label-as-badge holidayBadge">元旦</span>
                             <!-- 2017 春節 01/27 - 02/01 -->
                             @elseif ( $thisDay->between(Carbon::create(2017, 1, 27), Carbon::create(2017, 2, 1)) )
-                                <span class="label label-primary label-as-badge">春節</span>
+                                <span class="label label-primary label-as-badge holidayBadge">春節</span>
                             <!-- 2017 228紀念日 02/25 - 02/28 -->
                             @elseif ( $thisDay->between(Carbon::create(2017, 2, 25), Carbon::create(2017, 2, 28)) )
-                                <span class="label label-primary label-as-badge">228</span>
+                                <span class="label label-primary label-as-badge holidayBadge">228</span>
                             <!-- 2017 兒童節 04/01 - 04/04 -->
                             @elseif ( $thisDay->between(Carbon::create(2017, 4, 1), Carbon::create(2017, 4, 4)) )
-                                <span class="label label-primary label-as-badge">兒童節</span>
+                                <span class="label label-primary label-as-badge holidayBadge">兒童節</span>
                             <!-- 2017 勞動節 04/29 - 05/01 -->
                             @elseif ( $thisDay->between(Carbon::create(2017, 4, 29), Carbon::create(2017, 5, 1)) )
-                                <span class="label label-primary label-as-badge">勞動節</span>
+                                <span class="label label-primary label-as-badge holidayBadge">勞動節</span>
                             <!-- 2017 端午節 05/27 - 05/30 -->
                             @elseif ( $thisDay->between(Carbon::create(2017, 5, 27), Carbon::create(2017, 5, 30)) )
-                                <span class="label label-primary label-as-badge">端午節</span>
+                                <span class="label label-primary label-as-badge holidayBadge">端午節</span>
                             <!-- 2017 中秋節 10/04 -->
                             @elseif ( $thisDay == (Carbon::create(2017, 10, 4)) )
-                                <span class="label label-primary label-as-badge">中秋節</span>
+                                <span class="label label-primary label-as-badge holidayBadge">中秋節</span>
                             <!-- 2017 國慶日 10/07 - 10/10 -->
                             @elseif ( $thisDay->between(Carbon::create(2017, 10, 7), Carbon::create(2017, 10, 10)) )
-                                <span class="label label-primary label-as-badge">國慶日</span>
-                            @endif   
-
+                                <span class="label label-primary label-as-badge holidayBadge">國慶日</span>
+                            @endif
+                            @if($thisDay >= Carbon::now())
+                            <a class="btn btn-xs btn-danger pull-right" href="{{ route('orders.create',['thisYear'=>$thisDay->year ,'thisMonth'=>$thisDay->month ,'thisDay'=>$thisDay->day]) }}" style="margin-left: 20px; color: white;">
+                                <i class="glyphicon glyphicon-plus"></i>                      
+                            </a>
+                            @endif
+                            <br>
                             @foreach ($orders as $key=>$order)
                             @if(
                             (
@@ -141,15 +146,11 @@ $nextDate = Carbon::createFromDate($thisYear,$thisMonth,'1')->addMonth();
                             )
                             and ((Carbon::parse($order->checkin)->lte($thisDay)) and (Carbon::parse($order->checkout)->gt($thisDay)))
                             )
-                            <span class="badge">{{$order->orderRoom->name}}</span>
+                            <span class="badge roomsBadge" >{{$order->orderRoom->name}}</span>
                             @endif
                             @endforeach
 
-                            @if($thisDay >= Carbon::now())
-                            <a class="btn btn-xs btn-danger pull-right" href="{{ route('orders.create',['thisYear'=>$thisDay->year ,'thisMonth'=>$thisDay->month ,'thisDay'=>$thisDay->day]) }}" style="margin-left: 20px; color: white;">
-                                <i class="glyphicon glyphicon-plus"></i>                      
-                            </a>
-                            @endif
+                            
  
                         
                         </a>
