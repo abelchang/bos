@@ -17,6 +17,8 @@ Route::get('/', 'OrdersController@index');
 Route::get('orders/statistics/{thisYear?}/{thisMonth?}','OrdersController@statistics')->name('orders.statistics');
 Route::get('orders/create/{thisYear?}/{thisMonth?}/{thisDay?}','OrdersController@create')->name('orders.create');
 Route::get('orders/showByMonth/{thisYear}/{thisMonth}','OrdersController@showByMonth')->name('orders.showByMonth');
+Route::get('orders.cancel','OrdersController@cancel')->name('orders.cancel');
+Route::get('orders.delay','OrdersController@delay')->name('orders.delay');
 Route::resource('orders','OrdersController',['except'=>['create']]);
 Route::resource('rooms','RoomsController',['except'=>['index']]);
 Route::resource('orderStatus','OrderStatusController',['except'=>['index']]);

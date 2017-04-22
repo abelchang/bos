@@ -22,6 +22,8 @@ $indexDate = Carbon::now()->addMonth(4);
       
       <ul class="nav navbar-nav navbar-right">
         <li><a href="{{route('orders.index')}}">當月訂單</a></li>
+        <li><a href="{{route('orders.cancel')}}">取消訂單</a></li>
+        <li><a href="{{route('orders.delay')}}">延期訂單</a></li>
         <li><a href="{{route('orders.statistics')}}">統計資料</a></li>
         <!-- Authentication Links -->
         @if (Auth::guest())

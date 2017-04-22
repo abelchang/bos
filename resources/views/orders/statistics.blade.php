@@ -28,7 +28,7 @@ $nextDate = Carbon::createFromDate($thisYear,$thisMonth,'1')->addMonth();
                 @endfor
                 <li role="separator" class="divider"></li>
                 <li><a href=" {{ route('orders.statistics',['thisYear'=>Carbon::now()->year, '$thisMonth'=>'']) }} "> {{Carbon::now()->year}} </a></li>
-                <li><a href=" {{ route('orders.statistics',['thisYear'=>Carbon::now()->year, '$thisMonth'=>'']) }} "> {{Carbon::now()->subYear()->year}} </a></li>
+                <li><a href=" {{ route('orders.statistics',['thisYear'=>Carbon::now()->subYear()->year, '$thisMonth'=>'']) }} "> {{Carbon::now()->subYear()->year}} </a></li>
             </ul>
         </div>
         <h1>{{ $thisYear }} / {{ $thisMonth }} 總結</h1>

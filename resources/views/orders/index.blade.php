@@ -39,8 +39,7 @@ $nextDate = Carbon::createFromDate($thisYear,$thisMonth,'1')->addMonth();
                 <li><a href=" {{ route('orders.showByMonth',['thisYear'=>$indexDate->subMonth()->year, '$thisMonth'=>$indexDate->month]) }} "> {{$indexDate->year}}/{{$indexDate->month}} </a></li>
                 @endfor
               </ul>
-            </div>
-            
+            </div>    
         </div>
         @if(isset($roomType))
             Room: {{$roomType->name}}
@@ -186,7 +185,7 @@ $nextDate = Carbon::createFromDate($thisYear,$thisMonth,'1')->addMonth();
                                                 @endif
                                             </div>
                                             <div class="text-right">
-                                                ${{ $order->backPay }}
+                                                ${{ $order->backPay }}/${{ $order->price }}
                                             </div>
                                         </div>
                                         <hr style="margin:10px 0;" />
@@ -199,12 +198,15 @@ $nextDate = Carbon::createFromDate($thisYear,$thisMonth,'1')->addMonth();
                                                             <h4 class="panel-title">
                                                             <a data-toggle="collapse" href="#orderCollapse{{$order->id}}{{$thisDay->day}}">{{(!empty($order->customer))?"$order->customer":'info'}}</a>
                                                             </h4>
+                                                            <br>
+                                                            <ul class="list-group">
+                                                                <li class="list-group-item">memo:{{$order->memo}}</li>
+                                                            </ul>
                                                         </div>
                                                         <div id="orderCollapse{{$order->id}}{{$thisDay->day}}" class="panel-collapse collapse">
                                                             <ul class="list-group">
-                                                                <li class="list-group-item">memo:{{$order->memo}}</li>
                                                                 <li class="list-group-item">phone:<a href="tel:{{ $order->phone }}">{{ $order->phone }}</a></li>
-                                                                <li class="list-group-item">price:{{$order->price}}</li>
+                                                                <!-- <li class="list-group-item">price:{{$order->price}}</li> -->
                                                                 <li class="list-group-item">BD:{{$order->birthday}}</li>
                                                                 <li class="list-group-item">BDP:{{$order->placeOfBirth}}</li>
                                                             </ul>

@@ -23,10 +23,12 @@ class OrdersController extends Controller
         $thisMonth = Carbon::now()->month;
     	$orders = Orders::where(function ($query) use ($thisYear,$thisMonth){
             $query->whereYear('checkin','=',$thisYear)
-                ->whereMonth('checkin','=',$thisMonth);
+                ->whereMonth('checkin','=',$thisMonth)
+                ->whereNotIn('status',['4','5']);
         })->orWhere(function($query) use ($thisYear,$thisMonth) {
             $query->whereYear('checkout','=',$thisYear)
-                ->whereMonth('checkout','=',$thisMonth);
+                ->whereMonth('checkout','=',$thisMonth)
+                ->whereNotIn('status',['4','5']);
         })->orderBy('checkin','ASC')->get();
     	$rooms = Rooms::orderBy('name','ASC')->get();
     	$orderStatus = OrderStatus::orderBy('id','ASC')->get();
@@ -59,7 +61,9 @@ class OrdersController extends Controller
         }
 
         foreach ($orders as $key => $order) {
-            $total += $order->price;
+            if(($order->orderStatus->id != '4') and ($order->orderStatus->id != '5')) {
+                $total += $order->price;
+            }
             foreach ($rooms as $key => $room) {
                 if($room->id === $order->orderRoom->id) {
                     $roomSta[$room->name] += 1; 
@@ -85,10 +89,12 @@ class OrdersController extends Controller
 
         $orders = Orders::where(function ($query) use ($thisYear,$thisMonth){
             $query->whereYear('checkin','=',$thisYear)
-                ->whereMonth('checkin','=',$thisMonth);
+                ->whereMonth('checkin','=',$thisMonth)
+                ->whereNotIn('status',['4','5']);;
         })->orWhere(function($query) use ($thisYear,$thisMonth) {
             $query->whereYear('checkout','=',$thisYear)
-                ->whereMonth('checkout','=',$thisMonth);
+                ->whereMonth('checkout','=',$thisMonth)
+                ->whereNotIn('status',['4','5']);;
         })->orderBy('checkin','ASC')->get();
 
         $rooms = Rooms::orderBy('name','ASC')->get();
@@ -151,5 +157,15 @@ class OrdersController extends Controller
         $order=Orders::findOrFail($id);
         $order->delete();
         return Redirect::route('orders.index');
+    }
+
+    public function cancel() {
+        $orders = Orders::where('status','=','4')->orderBy('checkin','ASC')->get();
+        return view('orders.cancel',[ 'orders'=>$orders]);
+    }
+
+    public function delay() {
+        $orders = Orders::where('status','=','5')->orderBy('checkin','ASC')->get();
+        return view('orders.cancel',[ 'orders'=>$orders]);
     }
 }
