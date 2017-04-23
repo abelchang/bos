@@ -17,12 +17,14 @@
 <script type="text/javascript" src=" {{ asset('bower/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js') }} " ></script>
 <script src="{{ asset('bower/bootbox.js/bootbox.js') }} "></script>
 <script src="{{ asset('js/abel.js') }} "></script>
+<script type="text/javascript" src="{{ asset('js/ajax.js') }} "></script>
 <script src="{{ asset('bower/jquery-touchswipe/jquery.touchSwipe.min.js') }} "></script>
 
 
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-
 <meta property="og:image" content="http://www.haohouse1939.com/images/about.jpg" />
 <meta property="og:image:width" content="476"/>
+<meta name="csrf-token" content="{{ csrf_token() }}">
+
 <link href="{{ asset('image/icon1white.png') }}" rel="apple-touch-icon" /> 

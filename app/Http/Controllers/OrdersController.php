@@ -65,13 +65,13 @@ class OrdersController extends Controller
                 $total += $order->price;
             }
             foreach ($rooms as $key => $room) {
-                if($room->id === $order->orderRoom->id) {
+                if(($room->id === $order->orderRoom->id) and ($order->orderStatus->id < '4'))  {
                     $roomSta[$room->name] += 1; 
                 }
             }
 
             foreach ($orderPlaces as $key => $orderPlace) {
-                if($orderPlace->id === $order->place->id) {
+                if(($orderPlace->id === $order->place->id) and ($order->orderStatus->id < '4')) {
                     $placeSta[$orderPlace->name] += 1; 
                 }
             }
@@ -167,5 +167,16 @@ class OrdersController extends Controller
     public function delay() {
         $orders = Orders::where('status','=','5')->orderBy('checkin','ASC')->get();
         return view('orders.cancel',[ 'orders'=>$orders]);
+    }
+
+    public function updateStatus(Request $request) {
+        $order = Orders::findOrFail($request->orderID);
+        $order->status = $request->orderStatus;
+        $order->save();
+        $response = array(
+            'id' => $order->id,
+            'status' => $order->orderStatus->status,
+        );
+        return response()->json($response);
     }
 }

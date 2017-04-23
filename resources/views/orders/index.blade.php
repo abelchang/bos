@@ -178,7 +178,7 @@ $nextDate = Carbon::createFromDate($thisYear,$thisMonth,'1')->addMonth();
                                         <div class="row">
                                             <div class="col-md-8">
                                                 @if($order->status!=null)
-                                                <span class="badge" style="margin-left:10px;"> {{ $order->orderStatus->status }} </span>
+                                                <span id="status{{$order->id}}" class="badge" style="margin-left:10px;"> {{ $order->orderStatus->status }} </span>
                                                 @endif
                                                 @if($order->orderPlace!=null)
                                                 <span class="badge" style="margin-left:10px;"> {{ $order->place->name }} </span>
@@ -224,11 +224,22 @@ $nextDate = Carbon::createFromDate($thisYear,$thisMonth,'1')->addMonth();
                                                         <i class="glyphicon glyphicon-pencil"></i>
                                                         <span style="padding-left: 5px;">edit order</span>
                                                     </a>
-                                                    <input type="hidden" name="_method" value="DELETE" />
+                                                    <!-- <input type="hidden" name="_method" value="DELETE" />
                                                     <button type="submit" class="btn btn-xs btn-danger" data-submit-confirm-text="Are you sure?" >
                                                     <i class="glyphicon glyphicon-trash"></i>
                                                     <span style="padding-left: 5px;">delete order</span>
-                                                    </button>
+                                                    </button> -->
+                                                    <div class="btn-group dropup">
+                                                      <button type="button" class="btn btn-xs btn-danger dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                        <i class="glyphicon glyphicon-eye-open"></i>
+                                                        訂單狀態 <span class="caret"></span>
+                                                      </button>
+                                                      <ul class="dropdown-menu">
+                                                        @foreach( $orderStatus as $thisStatus)
+                                                        <li class="statusAjax" data-id="{{$order->id}}" data-value="{{$thisStatus->id}}" data-url="{{route('orders.updateStatus')}}">{{$thisStatus->status}}</li>
+                                                        @endforeach
+                                                      </ul>
+                                                    </div>
                                                 </span>
                                             </form>
                                             
