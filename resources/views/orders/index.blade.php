@@ -3,8 +3,8 @@
 @section('content')
 <?php
 use Carbon\Carbon;
-$indexDate = Carbon::now()->addMonth(4);
-$thisDay = Carbon::createFromDate($thisYear,$thisMonth,'1');
+$indexDate = Carbon::today()->addMonth(4);
+$thisDay = Carbon::create($thisYear,$thisMonth,1,0,0,0);
 $olderDate = Carbon::createFromDate($thisYear,$thisMonth,'1')->subMonth();
 $nextDate = Carbon::createFromDate($thisYear,$thisMonth,'1')->addMonth();
 ?>
@@ -55,8 +55,7 @@ $nextDate = Carbon::createFromDate($thisYear,$thisMonth,'1')->addMonth();
         <a class="btn btn-xs btn-default" id="showOrders" style="margin-left: 20px;">
             <span>+</span>
         </a>
-        @endif
-        
+        @endif        
         </h4>
         <hr />
         @if(count($orders) == 0)
@@ -66,8 +65,8 @@ $nextDate = Carbon::createFromDate($thisYear,$thisMonth,'1')->addMonth();
         @endif
         
         @while ($thisDay->month == $thisMonth)
-        <section id="{{ $thisDay->toDateString() }}" class="{{ ( ($thisDay < Carbon::now()) and ($thisDay->month == Carbon::now()->month) )?'overDateOrders':''}}" >
-        @if($thisDay < Carbon::now())
+        <section id="{{ $thisDay->toDateString() }}" class="{{ ( ($thisDay < Carbon::today()) and ($thisDay->month == Carbon::now()->month) )?'overDateOrders':''}}" >
+        @if($thisDay->lt(Carbon::today()))
         <div class="panel panel-default">
             <!-- 2017 元旦 2016/12/31 - 01/02 -->
             @elseif ( $thisDay->between(Carbon::create(2016, 12, 31), Carbon::create(2017, 1, 2)) )
@@ -103,7 +102,7 @@ $nextDate = Carbon::createFromDate($thisYear,$thisMonth,'1')->addMonth();
                     <div class="panel-heading">
                         <h3 class="panel-title">
                         <a data-toggle="collapse" href="#collapse{{$thisDay->year}}{{$thisDay->month}}{{$thisDay->day}}">{{$thisDay->format('l m/d')}}
-                            @if ($thisDay == Carbon::now())
+                            @if ($thisDay == Carbon::today())
                                 <span class="label label-default label-as-badge holidayBadge">Today</span>
                             @endif
                             <!-- 2017 元旦 2016/12/31 - 01/02 -->
@@ -131,7 +130,7 @@ $nextDate = Carbon::createFromDate($thisYear,$thisMonth,'1')->addMonth();
                             @elseif ( $thisDay->between(Carbon::create(2017, 10, 7), Carbon::create(2017, 10, 10)) )
                                 <span class="label label-primary label-as-badge holidayBadge">國慶日</span>
                             @endif
-                            @if($thisDay >= Carbon::now())
+                            @if($thisDay >= Carbon::today())
                             <a class="btn btn-xs btn-danger pull-right" href="{{ route('orders.create',['thisYear'=>$thisDay->year ,'thisMonth'=>$thisDay->month ,'thisDay'=>$thisDay->day]) }}" style="margin-left: 20px; color: white;">
                                 <i class="glyphicon glyphicon-plus"></i>                      
                             </a>
@@ -144,8 +143,18 @@ $nextDate = Carbon::createFromDate($thisYear,$thisMonth,'1')->addMonth();
                             or( (Carbon::parse($order->checkout)->year === $thisDay->year) and (Carbon::parse($order->checkout)->month === $thisDay->month) )
                             )
                             and ((Carbon::parse($order->checkin)->lte($thisDay)) and (Carbon::parse($order->checkout)->gt($thisDay)))
+                            and ($order->status == '3')
                             )
-                            <span class="badge roomsBadge" >{{$order->orderRoom->name}}</span>
+                                <span class="badge roomsBadge" ><del>{{$order->orderRoom->name}}</del></span>
+                            @elseif(
+                            (
+                            ( (Carbon::parse($order->checkin)->year === $thisDay->year) and (Carbon::parse($order->checkin)->month === $thisDay->month) )
+                            or( (Carbon::parse($order->checkout)->year === $thisDay->year) and (Carbon::parse($order->checkout)->month === $thisDay->month) )
+                            )
+                            and ((Carbon::parse($order->checkin)->lte($thisDay)) and (Carbon::parse($order->checkout)->gt($thisDay)))
+                            
+                            )
+                                <span class="badge roomsBadge" >{{$order->orderRoom->name}}</span>
                             @endif
                             @endforeach
 
@@ -156,7 +165,7 @@ $nextDate = Carbon::createFromDate($thisYear,$thisMonth,'1')->addMonth();
                         </h3>
                     </div>
                     
-                    <div id="collapse{{$thisDay->year}}{{$thisDay->month}}{{$thisDay->day}}" class="panel-collapse collapse {{($thisDay == Carbon::now())?'in':''}} ">
+                    <div id="collapse{{$thisDay->year}}{{$thisDay->month}}{{$thisDay->day}}" class="panel-collapse collapse {{($thisDay == Carbon::today())?'in':''}} ">
                         <div class="panel-body">
                             @foreach ($orders as $key=>$order)
                             @if(
