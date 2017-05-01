@@ -32,7 +32,7 @@ $nextDate = Carbon::createFromDate($thisYear,$thisMonth,'1')->addMonth();
             <div class="btn-group">
               <button type="button" class="btn btn-xs btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <i class="glyphicon glyphicon-search"></i>
-                月份查詢 <span class="caret"></span>
+                月份 <span class="caret"></span>
               </button>
               <ul class="dropdown-menu">
                 @for($i = 0; $i <= 7; $i++)
@@ -56,10 +56,11 @@ $nextDate = Carbon::createFromDate($thisYear,$thisMonth,'1')->addMonth();
         @endif
 
         @if((count($orders) > 0) and ($thisDay->month == Carbon::now()->month))
-        <a class="btn btn-xs btn-default" id="showOrders" style="margin-left: 20px;">
+        <a class="btn btn-xs btn-default" id="showOrders" style="margin-left: 6px;">
             <span>+</span>
         </a>
-        @endif        
+        @endif
+        <br>     
         </h4>
         <hr />
         @if(count($orders) == 0)
