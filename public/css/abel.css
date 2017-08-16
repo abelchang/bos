@@ -37,6 +37,11 @@ body { padding-top: 70px; }
     margin-top: 0.6em;
 }
 
+.checkoutBadge {
+    background-color:grey !important;
+    color:white !important;
+}
+
 .statusAjax {
     margin-left: 1em;
 }

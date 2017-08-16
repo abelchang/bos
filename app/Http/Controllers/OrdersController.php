@@ -29,7 +29,7 @@ class OrdersController extends Controller
             $query->whereYear('checkout','=',$thisYear)
                 ->whereMonth('checkout','=',$thisMonth)
                 ->whereNotIn('status',['4','5']);
-        })->orderBy('checkin','ASC')->get();
+        })->orderBy('checkin','DESC')->get();
     	$rooms = Rooms::orderBy('name','ASC')->get();
     	$orderStatus = OrderStatus::orderBy('id','ASC')->get();
     	$orderPlaces  = OrderPlace::orderBy('id','ASC')->get();
@@ -95,7 +95,7 @@ class OrdersController extends Controller
             $query->whereYear('checkout','=',$thisYear)
                 ->whereMonth('checkout','=',$thisMonth)
                 ->whereNotIn('status',['4','5']);;
-        })->orderBy('checkin','ASC')->get();
+        })->orderBy('checkin','DESC')->get();
 
         $rooms = Rooms::orderBy('name','ASC')->get();
         $orderStatus = OrderStatus::orderBy('id','ASC')->get();
