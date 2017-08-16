@@ -160,14 +160,8 @@ $nextDate = Carbon::createFromDate($thisYear,$thisMonth,'1')->addMonth();
                             
                             )
                                 <span class="badge roomsBadge" >{{$order->orderRoom->name}}</span>
-                            @elseif(
-                            (
-                            ( (Carbon::parse($order->checkin)->year === $thisDay->year) and (Carbon::parse($order->checkin)->month === $thisDay->month) )
-                            or( (Carbon::parse($order->checkout)->year === $thisDay->year) and (Carbon::parse($order->checkout)->month === $thisDay->month) )
-                            )
-                            and ((Carbon::parse($order->checkin)->lte($thisDay)) and (Carbon::parse($order->checkout)->gte($thisDay)))
-                            
-                            )
+                            @endif
+                            @if(Carbon::parse($order->checkout)->eq($thisDay))
                                 <span class="badge roomsBadge checkoutBadge" >{{$order->orderRoom->name}}-退</span>
                             @endif
                             @endforeach
