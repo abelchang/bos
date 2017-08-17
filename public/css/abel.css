@@ -35,11 +35,17 @@ body { padding-top: 70px; }
 
 .roomsBadge {
     margin-top: 0.6em;
+    color:white !important;
 }
 
 .checkoutBadge {
     background-color:grey !important;
-    color:white !important;
+    /*color:white !important;*/
+}
+
+.checkinBadge {
+    background-color:rgb(54, 112, 152) !important;
+    /*color:white !important;*/
 }
 
 .statusAjax {
