@@ -150,7 +150,7 @@ $nextDate = Carbon::createFromDate($thisYear,$thisMonth,'1')->addMonth();
                             ( (Carbon::parse($order->checkin)->year === $thisDay->year) and (Carbon::parse($order->checkin)->month === $thisDay->month) )
                             or( (Carbon::parse($order->checkout)->year === $thisDay->year) and (Carbon::parse($order->checkout)->month === $thisDay->month) )
                             )
-                            and ((Carbon::parse($order->checkin)->lte($thisDay)) and (Carbon::parse($order->checkout)->gt($thisDay)))
+                            and ((Carbon::parse($order->checkin)->lt($thisDay)) and (Carbon::parse($order->checkout)->gt($thisDay)))
                             and ($order->status == '3')
                             )
                                 <span class="badge roomsBadge" ><del>{{$order->orderRoom->name}}</del></span>
@@ -159,7 +159,7 @@ $nextDate = Carbon::createFromDate($thisYear,$thisMonth,'1')->addMonth();
                             ( (Carbon::parse($order->checkin)->year === $thisDay->year) and (Carbon::parse($order->checkin)->month === $thisDay->month) )
                             or( (Carbon::parse($order->checkout)->year === $thisDay->year) and (Carbon::parse($order->checkout)->month === $thisDay->month) )
                             )
-                            and ((Carbon::parse($order->checkin)->lte($thisDay)) and (Carbon::parse($order->checkout)->gt($thisDay)))
+                            and ((Carbon::parse($order->checkin)->lt($thisDay)) and (Carbon::parse($order->checkout)->gt($thisDay)))
                             
                             )
                                 <span class="badge roomsBadge" >{{$order->orderRoom->name}}</span>
