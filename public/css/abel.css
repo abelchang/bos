@@ -7,6 +7,10 @@ body { padding-top: 70px; }
     font-size: 0.6em;
 }
 
+.titleDate {
+    font-size: 0.8em;
+}
+
 #gotop-right {
     display: none;
     position: fixed;

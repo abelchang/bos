@@ -106,7 +106,7 @@ $nextDate = Carbon::createFromDate($thisYear,$thisMonth,'1')->addMonth();
                     
                     <div class="panel-heading">
                         <h3 class="panel-title">
-                        <a data-toggle="collapse" href="#collapse{{$thisDay->year}}{{$thisDay->month}}{{$thisDay->day}}">{{$thisDay->format('D m/d')}}
+                        <a data-toggle="collapse" href="#collapse{{$thisDay->year}}{{$thisDay->month}}{{$thisDay->day}}"><span class="titleDate">{{$thisDay->format('D m/d')}}</span>
                             @if ($thisDay == Carbon::today())
                                 <span class="label label-default label-as-badge holidayBadge">Today</span>
                             @endif
