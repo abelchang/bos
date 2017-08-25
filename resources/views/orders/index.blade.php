@@ -106,7 +106,7 @@ $nextDate = Carbon::createFromDate($thisYear,$thisMonth,'1')->addMonth();
                     
                     <div class="panel-heading">
                         <h3 class="panel-title">
-                        <a data-toggle="collapse" href="#collapse{{$thisDay->year}}{{$thisDay->month}}{{$thisDay->day}}">{{$thisDay->format('l m/d')}}
+                        <a data-toggle="collapse" href="#collapse{{$thisDay->year}}{{$thisDay->month}}{{$thisDay->day}}">{{$thisDay->format('D m/d')}}
                             @if ($thisDay == Carbon::today())
                                 <span class="label label-default label-as-badge holidayBadge">Today</span>
                             @endif
@@ -136,42 +136,34 @@ $nextDate = Carbon::createFromDate($thisYear,$thisMonth,'1')->addMonth();
                                 <span class="label label-primary label-as-badge holidayBadge">國慶日</span>
                             @endif
                             @if($thisDay >= Carbon::today())
-                            <a class="btn btn-xs btn-danger pull-right" href="{{ route('orders.create',['thisYear'=>$thisDay->year ,'thisMonth'=>$thisDay->month ,'thisDay'=>$thisDay->day]) }}" style="margin-left: 20px; color: white;">
+                            <a class="btn btn-xs btn-danger pull-right" href="{{ route('orders.create',['thisYear'=>$thisDay->year ,'thisMonth'=>$thisDay->month ,'thisDay'=>$thisDay->day]) }}" style="margin-left: 5px; color: white;">
                                 <i class="glyphicon glyphicon-plus"></i>                      
                             </a>
                             @endif
+                            @foreach ($orders as $key=>$order)
+                            @if(Carbon::parse($order->checkout)->eq($thisDay))
+                                <span class="label label-default label-as-badge checkoutBadge" >{{$order->orderRoom->name}}</span>
+                            @endif
+                            @endforeach
                             <br>
                             @foreach ($orders as $key=>$order)
-                            @if(Carbon::parse($order->checkin)->eq($thisDay))
-                                <span class="badge roomsBadge checkinBadge" >{{$order->orderRoom->name}}</span>
-                            @endif
+                            <!-- @if(Carbon::parse($order->checkin)->eq($thisDay))
+                                <span class="badge roomsBadge" >{{$order->orderRoom->name}}</span>
+                            @endif -->
                             @if(
                             (
                             ( (Carbon::parse($order->checkin)->year === $thisDay->year) and (Carbon::parse($order->checkin)->month === $thisDay->month) )
                             or( (Carbon::parse($order->checkout)->year === $thisDay->year) and (Carbon::parse($order->checkout)->month === $thisDay->month) )
                             )
-                            and ((Carbon::parse($order->checkin)->lt($thisDay)) and (Carbon::parse($order->checkout)->gt($thisDay)))
-                            and ($order->status == '3')
-                            )
-                                <span class="badge roomsBadge" ><del>{{$order->orderRoom->name}}</del></span>
-                            @elseif(
-                            (
-                            ( (Carbon::parse($order->checkin)->year === $thisDay->year) and (Carbon::parse($order->checkin)->month === $thisDay->month) )
-                            or( (Carbon::parse($order->checkout)->year === $thisDay->year) and (Carbon::parse($order->checkout)->month === $thisDay->month) )
-                            )
-                            and ((Carbon::parse($order->checkin)->lt($thisDay)) and (Carbon::parse($order->checkout)->gt($thisDay)))
+                            and ((Carbon::parse($order->checkin)->lte($thisDay)) and (Carbon::parse($order->checkout)->gt($thisDay)))
                             
                             )
-                                <span class="badge roomsBadge" >{{$order->orderRoom->name}}</span>
+                                <span class="badge roomsBadge" >{{$order->orderRoom->name}}{{Carbon::parse($order->checkin)->diffInDays($thisDay)+1}}</span>
                             @endif
-                            @if(Carbon::parse($order->checkout)->eq($thisDay))
+                            <!-- @if(Carbon::parse($order->checkout)->eq($thisDay))
                                 <span class="badge roomsBadge checkoutBadge" >{{$order->orderRoom->name}}</span>
-                            @endif
+                            @endif -->
                             @endforeach
-
-                            
- 
-                        
                         </a>
                         </h3>
                     </div>
@@ -229,6 +221,7 @@ $nextDate = Carbon::createFromDate($thisYear,$thisMonth,'1')->addMonth();
                                                                 <!-- <li class="list-group-item">price:{{$order->price}}</li> -->
                                                                 <li class="list-group-item">BD:{{$order->birthday}}</li>
                                                                 <li class="list-group-item">BDP:{{$order->placeOfBirth}}</li>
+                                                                <li class="list-group-item">ADR:{{$order->address}}</li>
                                                             </ul>
                                                         </div>
                                                     </div>
