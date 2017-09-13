@@ -73,6 +73,7 @@ $nextDate = Carbon::createFromDate($thisYear,$thisMonth,'1')->addMonth();
         <section id="{{ $thisDay->toDateString() }}" class="{{ ( ($thisDay < Carbon::today()) and ($thisDay->month == Carbon::now()->month) )?'overDateOrders':''}}" >
         @if($thisDay->lt(Carbon::today()))
         <div class="panel panel-default">
+            <!-- 2017 -->
             <!-- 2017 元旦 2016/12/31 - 01/02 -->
             @elseif ( $thisDay->between(Carbon::create(2016, 12, 31), Carbon::create(2017, 1, 2)) )
             <div class="panel panel-danger">
@@ -96,6 +97,34 @@ $nextDate = Carbon::createFromDate($thisYear,$thisMonth,'1')->addMonth();
             <div class="panel panel-danger">
             <!-- 2017 國慶日 10/07 - 10/10 -->
             @elseif ( $thisDay->between(Carbon::create(2017, 10, 7), Carbon::create(2017, 10, 10)) )
+            <div class="panel panel-danger">
+            <!-- 2018 -->
+            <!-- 2018 元旦 2017/12/30 - 01/01 -->
+            @elseif ( $thisDay->between(Carbon::create(2017, 12, 30), Carbon::create(2018, 1, 1)) )
+            <div class="panel panel-danger">
+            <!-- 2018 春節 02/15 - 02/20 -->
+            @elseif ( $thisDay->between(Carbon::create(2018, 2, 15), Carbon::create(2018, 2, 20)) )
+            <div class="panel panel-danger">
+            <!-- 2018 228紀念日 02/28 - 02/28 -->
+            @elseif ( $thisDay->between(Carbon::create(2018, 2, 27), Carbon::create(2018, 2, 28)) )
+            <div class="panel panel-danger">
+            <!-- 2018 兒童節 04/04 - 04/08 -->
+            @elseif ( $thisDay->between(Carbon::create(2018, 4, 4), Carbon::create(2018, 4, 8)) )
+            <div class="panel panel-danger">
+            <!-- 2018 勞動節 05/01 -->
+            @elseif ( $thisDay->between(Carbon::create(2018, 4, 30), Carbon::create(2018, 5, 1)) )
+            <div class="panel panel-danger">
+            <!-- 2018 端午節 6/16 - 6/18-->
+            @elseif ( $thisDay->between(Carbon::create(2018, 6, 16), Carbon::create(2018, 6, 18)) )
+            <div class="panel panel-danger">
+            <!-- 2018 中秋節 9/22 - 9/24-->
+            @elseif ( $thisDay->between(Carbon::create(2018, 9, 22), Carbon::create(2018, 9, 24)) )
+            <div class="panel panel-danger">
+            <!-- 2018 國慶日 10/10 -->
+            @elseif ( $thisDay->between(Carbon::create(2018, 10, 9), Carbon::create(2018, 10, 10)) )
+            <div class="panel panel-danger">
+            <!-- 2018 元旦 12/29 - 1/1 -->
+            @elseif ( $thisDay->between(Carbon::create(2018, 12, 29), Carbon::create(2019, 1, 1)) )
             <div class="panel panel-danger">
             <!-- 一般週末 -->
             @elseif ( ($thisDay->dayOfWeek == (Carbon::FRIDAY)) || ($thisDay->dayOfWeek == (Carbon::SATURDAY)) )
@@ -134,6 +163,34 @@ $nextDate = Carbon::createFromDate($thisYear,$thisMonth,'1')->addMonth();
                             <!-- 2017 國慶日 10/07 - 10/10 -->
                             @elseif ( $thisDay->between(Carbon::create(2017, 10, 7), Carbon::create(2017, 10, 10)) )
                                 <span class="label label-primary label-as-badge holidayBadge">國慶日</span>
+                            <!-- 2018 -->
+                            <!-- 2018 元旦 2017/12/30 - 01/01 -->
+                            @elseif ( $thisDay->between(Carbon::create(2017, 12, 30), Carbon::create(2018, 1, 1)) )
+                                <span class="label label-primary label-as-badge holidayBadge">元旦</span>
+                            <!-- 2018 春節 02/15 - 02/20 -->
+                            @elseif ( $thisDay->between(Carbon::create(2018, 2, 15), Carbon::create(2018, 2, 20)) )
+                                <span class="label label-primary label-as-badge holidayBadge">春節</span>
+                            <!-- 2018 228紀念日 02/28 - 02/28 -->
+                            @elseif ( $thisDay->between(Carbon::create(2018, 2, 27), Carbon::create(2018, 2, 28)) )
+                                <span class="label label-primary label-as-badge holidayBadge">228</span>
+                            <!-- 2018 兒童節 04/04 - 04/08 -->
+                            @elseif ( $thisDay->between(Carbon::create(2018, 4, 4), Carbon::create(2018, 4, 8)) )
+                                <span class="label label-primary label-as-badge holidayBadge">兒童節</span>
+                            <!-- 2018 勞動節 05/01 -->
+                            @elseif ( $thisDay->between(Carbon::create(2018, 4, 30), Carbon::create(2018, 5, 1)) )
+                                <span class="label label-primary label-as-badge holidayBadge">勞動節</span>
+                            <!-- 2018 端午節 6/16 - 6/18-->
+                            @elseif ( $thisDay->between(Carbon::create(2018, 6, 16), Carbon::create(2018, 6, 18)) )
+                                <span class="label label-primary label-as-badge holidayBadge">端午節</span>
+                            <!-- 2018 中秋節 9/22 - 9/24-->
+                            @elseif ( $thisDay->between(Carbon::create(2018, 9, 22), Carbon::create(2018, 9, 24)) )
+                                <span class="label label-primary label-as-badge holidayBadge">中秋節</span>
+                            <!-- 2018 國慶日 10/10 -->
+                            @elseif ( $thisDay->between(Carbon::create(2018, 10, 9), Carbon::create(2018, 10, 10)) )
+                                <span class="label label-primary label-as-badge holidayBadge">國慶日</span>
+                            <!-- 2018 元旦 12/29 - 1/1 -->
+                            @elseif ( $thisDay->between(Carbon::create(2018, 12, 29), Carbon::create(2019, 1, 1)) )
+                                 <span class="label label-primary label-as-badge holidayBadge">元旦</span>
                             @endif
                             @if($thisDay >= Carbon::today())
                             <a class="btn btn-xs btn-danger pull-right" href="{{ route('orders.create',['thisYear'=>$thisDay->year ,'thisMonth'=>$thisDay->month ,'thisDay'=>$thisDay->day]) }}" style="margin-left: 5px; color: white;">
