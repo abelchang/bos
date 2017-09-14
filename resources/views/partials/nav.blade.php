@@ -16,10 +16,16 @@ $indexDate = Carbon::now()->addMonth(4);
       </button>
       <a class="navbar-brand" href="{{ route('orders.index') }}">花蓮好書室</a>
     </div>
-
+    
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-      
+      <form class="navbar-form navbar-left" method="POST" action="{{ route('orders.search') }}">
+        <div class="form-group">
+            {{ csrf_field() }}
+          <input type="text" class="form-control" placeholder="Search" name="keyword">
+        </div>
+        <button type="submit" class="btn btn-default">Submit</button>
+      </form>
       <ul class="nav navbar-nav navbar-right">
         <li><a href="{{route('orders.index')}}">當月訂單</a></li>
         <li><a href="{{route('orders.cancel')}}">取消訂單</a></li>

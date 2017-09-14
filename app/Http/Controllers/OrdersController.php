@@ -179,4 +179,9 @@ class OrdersController extends Controller
         );
         return response()->json($response);
     }
+
+    public function search(Request $request) {
+        $orders = Orders::where('customer','like','%'.$request->keyword.'%')->get();
+        return view('orders.search',['orders'=>$orders]);
+    }
 }

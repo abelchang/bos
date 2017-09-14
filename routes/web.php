@@ -20,12 +20,14 @@ Route::get('orders/showByMonth/{thisYear}/{thisMonth}','OrdersController@showByM
 Route::get('orders.cancel','OrdersController@cancel')->name('orders.cancel');
 Route::get('orders.delay','OrdersController@delay')->name('orders.delay');
 Route::post('orders.updateStatus','OrdersController@updateStatus')->name('orders.updateStatus');
+Route::post('orders.search','OrdersController@search')->name('orders.search');
 
 Route::resource('orders','OrdersController',['except'=>['create']]);
 Route::resource('rooms','RoomsController',['except'=>['index']]);
 Route::resource('orderStatus','OrderStatusController',['except'=>['index']]);
 Route::resource('orderPlace','OrderPlaceController',['except'=>['index']]);
 Route::resource('bnb','BnBController');
+
 
 
 Route::get('user/activation/{token}', 'Auth\LoginController@activateUser')->name('user.activate');
