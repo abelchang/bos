@@ -181,7 +181,7 @@ class OrdersController extends Controller
     }
 
     public function search(Request $request) {
-        $orders = Orders::where('customer','like','%'.$request->keyword.'%')->get();
+        $orders = Orders::where('customer','like','%'.$request->keyword.'%')->orderBy('checkin','ASC')->get();
         return view('orders.search',['orders'=>$orders]);
     }
 }

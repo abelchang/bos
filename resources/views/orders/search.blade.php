@@ -41,7 +41,7 @@ use Carbon\Carbon;
 							</ul>
 						</div>
 					</td>
-					<td>{{Carbon::parse($order->checkin)->format('m/d')}}</td>
+					<td>{{Carbon::parse($order->checkin)->format('Y/m/d')}}</td>
 					<td>{{Carbon::parse($order->checkout)->diffInDays(Carbon::parse($order->checkin))}}</td>
 					<td>{{$order->place->name}}</td>
 					<!-- <td>{{$order->mome}}</td> -->
