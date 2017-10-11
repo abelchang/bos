@@ -93,7 +93,7 @@ $nextDate = Carbon::createFromDate($thisYear,$thisMonth,'1')->addMonth();
             @elseif ( $thisDay->between(Carbon::create(2017, 5, 27), Carbon::create(2017, 5, 30)) )
             <div class="panel panel-danger">
             <!-- 2017 中秋節 10/04 -->
-            @elseif ( $thisDay == (Carbon::create(2017, 10, 4)) )
+            @elseif ( $thisDay->between(Carbon::create(2017, 10, 3), Carbon::create(2017, 10, 4)) )
             <div class="panel panel-danger">
             <!-- 2017 國慶日 10/07 - 10/10 -->
             @elseif ( $thisDay->between(Carbon::create(2017, 10, 7), Carbon::create(2017, 10, 10)) )
@@ -158,7 +158,7 @@ $nextDate = Carbon::createFromDate($thisYear,$thisMonth,'1')->addMonth();
                             @elseif ( $thisDay->between(Carbon::create(2017, 5, 27), Carbon::create(2017, 5, 30)) )
                                 <span class="label label-primary label-as-badge holidayBadge">端午節</span>
                             <!-- 2017 中秋節 10/04 -->
-                            @elseif ( $thisDay == (Carbon::create(2017, 10, 4)) )
+                            @elseif ( $thisDay->between(Carbon::create(2017, 10, 3), Carbon::create(2017, 10, 4)) )
                                 <span class="label label-primary label-as-badge holidayBadge">中秋節</span>
                             <!-- 2017 國慶日 10/07 - 10/10 -->
                             @elseif ( $thisDay->between(Carbon::create(2017, 10, 7), Carbon::create(2017, 10, 10)) )
@@ -215,7 +215,7 @@ $nextDate = Carbon::createFromDate($thisYear,$thisMonth,'1')->addMonth();
                             and ((Carbon::parse($order->checkin)->lte($thisDay)) and (Carbon::parse($order->checkout)->gt($thisDay)))
                             
                             )
-                                <span class="badge roomsBadge" >{{$order->orderRoom->name}}{{Carbon::parse($order->checkin)->diffInDays($thisDay)+1}}</span>
+                                <span class="badge roomsBadge" >{{$order->orderRoom->name}}{{Carbon::parse($order->checkin)->diffInDays($thisDay)+1}}/{{Carbon::parse($order->checkout)->diffInDays(Carbon::parse($order->checkin))}}</span>
                             @endif
                             <!-- @if(Carbon::parse($order->checkout)->eq($thisDay))
                                 <span class="badge roomsBadge checkoutBadge" >{{$order->orderRoom->name}}</span>
@@ -241,7 +241,7 @@ $nextDate = Carbon::createFromDate($thisYear,$thisMonth,'1')->addMonth();
                                     <div class="container-fluid" style="padding:0;">
                                         <div class="row">
                                             <div class="col-md-12">
-                                                <h2 style="margin-top:0;">{{ $order->orderRoom->name }} - {{Carbon::parse($order->checkout)->diffInDays(Carbon::parse($order->checkin))}}夜</h2>
+                                                <h2 style="margin-top:0;">{{ $order->orderRoom->name }} - {{Carbon::parse($order->checkin)->diffInDays($thisDay)+1}}/{{Carbon::parse($order->checkout)->diffInDays(Carbon::parse($order->checkin))}}夜</h2>
                                             </div>
                                         </div>
                                         <div class="row">
