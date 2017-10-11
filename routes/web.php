@@ -27,7 +27,7 @@ Route::resource('rooms','RoomsController',['except'=>['index']]);
 Route::resource('orderStatus','OrderStatusController',['except'=>['index']]);
 Route::resource('orderPlace','OrderPlaceController',['except'=>['index']]);
 Route::resource('bnb','BnBController');
-
+Route::get('orders.chartjs', 'OrdersController@chartjs')->name('orders.chartjs');;
 
 
 Route::get('user/activation/{token}', 'Auth\LoginController@activateUser')->name('user.activate');

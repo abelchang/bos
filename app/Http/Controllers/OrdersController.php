@@ -13,6 +13,7 @@ use App\Orders;
 use App\OrderStatus;
 use App\Rooms;
 use App\OrderPlace;
+use Illuminate\Support\Facades\DB;
 
 class OrdersController extends Controller
 {
@@ -37,6 +38,7 @@ class OrdersController extends Controller
     }
 
     public function statistics($thisYear = null,$thisMonth = null) {
+        $index = "";
         if(!isset($thisMonth) && !isset($thisYear)) {
             $thisYear = Carbon::now()->year;
             $thisMonth = Carbon::now()->month;
@@ -44,8 +46,10 @@ class OrdersController extends Controller
 
         if (isset($thisYear) && !isset($thisMonth)) {
             $orders = Orders::whereYear('checkin','=',$thisYear)->get();
+            $index = "year";
         } else {
             $orders = Orders::whereYear('checkin','=',$thisYear)->whereMonth('checkin','=',$thisMonth)->get();
+            $index = "month";
         }
         
         $rooms = Rooms::orderBy('id','ASC')->get();
@@ -77,7 +81,7 @@ class OrdersController extends Controller
             }
         }
         
-        return view('orders.statistics',['total'=>$total,'roomSta'=>$roomSta, 'placeSta'=>$placeSta, 'thisYear'=>$thisYear ,'thisMonth'=>$thisMonth]);  
+        return view('orders.statistics',['total'=>$total,'roomSta'=>$roomSta, 'placeSta'=>$placeSta, 'thisYear'=>$thisYear ,'thisMonth'=>$thisMonth, 'index'=>$index]);  
            
     }
 
@@ -181,7 +185,25 @@ class OrdersController extends Controller
     }
 
     public function search(Request $request) {
-        $orders = Orders::where('customer','like','%'.$request->keyword.'%')->orderBy('checkin','ASC')->get();
+        $orders = Orders::where('customer','like','%'.$request->keyword.'%')->orWhere('phone','like','%'.$request->keyword.'%')->orderBy('checkin','ASC')->get();
         return view('orders.search',['orders'=>$orders]);
+    }
+
+    public function chartjs() {
+        $viewer = Orders::select(DB::raw("SUM(price) as count"))
+        ->orderBy("created_at")
+        ->groupBy(DB::raw("year(created_at)"))
+        ->get()->toArray();
+    $viewer = array_column($viewer, 'count');
+    
+    $click = Orders::select(DB::raw("SUM(room) as count"))
+        ->orderBy("created_at")
+        ->groupBy(DB::raw("year(created_at)"))
+        ->get()->toArray();
+    $click = array_column($click, 'count');
+    
+    return view('orders.chartjs')
+            ->with('viewer',json_encode($viewer,JSON_NUMERIC_CHECK))
+            ->with('click',json_encode($click,JSON_NUMERIC_CHECK));
     }
 }

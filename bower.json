@@ -23,6 +23,7 @@
     "swipe-js": "^2.2.3",
     "moment": "^2.15.2",
     "jquery-mobile": "^1.4.5",
-    "jquery-touchswipe": "^1.6.18"
+    "jquery-touchswipe": "^1.6.18",
+    "chart.js": "^2.7.0"
   }
 }

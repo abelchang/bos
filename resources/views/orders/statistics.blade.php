@@ -9,6 +9,7 @@ $olderDate = Carbon::createFromDate($thisYear,$thisMonth,'1')->subMonth();
 $nextDate = Carbon::createFromDate($thisYear,$thisMonth,'1')->addMonth();
 $thisDate = Carbon::createFromDate($thisYear,$thisMonth,'1');
 $thisMonthTotalRooms = $thisDate->daysInMonth*count($roomSta);
+$thisYearTotalRooms = $thisDate->dayOfYear*count($roomSta);
 ?>
 <div class="container">
 
@@ -45,14 +46,22 @@ $thisMonthTotalRooms = $thisDate->daysInMonth*count($roomSta);
                 <?php $countTotal = 0; ?>
                 @foreach($roomSta as $roomName => $count)
                 <a href="#orderRooms" class="list-group-item">
-                    <span class="badge">{{number_format($count/$thisDate->daysInMonth*100).'%'}}</span>
+                    @if($index == "year")
+                        <span class="badge">{{number_format($count/$thisYearTotalRooms*100).'%'}}</span>
+                    @elseif($index == "month")
+                        <span class="badge">{{number_format($count/$thisDate->daysInMonth*100).'%'}}</span>
+                    @endif
                     <span class="badge">{{$count}}</span>
                     {{$roomName}}
                     <?php $countTotal+=$count; ?>
                 </a>
                 @endforeach
                 <li class="list-group-item list-group-item-warning">
-                    <span class="badge">{{number_format($countTotal/$thisMonthTotalRooms*100).'%'}}</span>
+                    @if($index == "year")
+                        <span class="badge">{{number_format($countTotal/$thisYearTotalRooms*100).'%'}}</span>
+                    @elseif($index == "month")
+                        <span class="badge">{{number_format($countTotal/$thisMonthTotalRooms*100).'%'}}</span>
+                    @endif
                     <span class="badge">{{$countTotal}}</span>
                     Total
                 </li>
