@@ -65,7 +65,7 @@ class OrdersController extends Controller
                 $total += $order->price;
             }
             foreach ($rooms as $key => $room) {
-                if(($room->id === $order->orderRoom->id) and ($order->orderStatus->id < '4'))  {
+                if(($room->id === $order->orderRoom->id) and ($order->orderStatus->id != '4') and ($order->orderStatus->id != '5'))  {
                     $roomSta[$room->name] += Carbon::parse($order->checkout)->diffInDays(Carbon::parse($order->checkin)); 
                 }
             }
