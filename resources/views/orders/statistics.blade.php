@@ -47,7 +47,7 @@ $thisYearTotalRooms = $thisDate->dayOfYear*count($roomSta);
                 @foreach($roomSta as $roomName => $count)
                 <a href="#orderRooms" class="list-group-item">
                     @if($index == "year")
-                        <span class="badge">{{number_format($count/$thisYearTotalRooms*100).'%'}}</span>
+                        <span class="badge">{{number_format($count/$thisDate->dayOfYear*100).'%'}}</span>
                     @elseif($index == "month")
                         <span class="badge">{{number_format($count/$thisDate->daysInMonth*100).'%'}}</span>
                     @endif
