@@ -7,6 +7,8 @@ use Carbon\Carbon;
 $staDate = Carbon::now()->addMonth(4);
 $olderDate = Carbon::createFromDate($thisYear,$thisMonth,'1')->subMonth();
 $nextDate = Carbon::createFromDate($thisYear,$thisMonth,'1')->addMonth();
+$thisDate = Carbon::createFromDate($thisYear,$thisMonth,'1');
+$thisMonthTotalRooms = $thisDate->daysInMonth*count($roomSta);
 ?>
 <div class="container">
 
@@ -43,12 +45,14 @@ $nextDate = Carbon::createFromDate($thisYear,$thisMonth,'1')->addMonth();
                 <?php $countTotal = 0; ?>
                 @foreach($roomSta as $roomName => $count)
                 <a href="#orderRooms" class="list-group-item">
+                    <span class="badge">{{number_format($count/$thisDate->daysInMonth*100).'%'}}</span>
                     <span class="badge">{{$count}}</span>
                     {{$roomName}}
                     <?php $countTotal+=$count; ?>
                 </a>
                 @endforeach
                 <li class="list-group-item list-group-item-warning">
+                    <span class="badge">{{number_format($countTotal/$thisMonthTotalRooms*100).'%'}}</span>
                     <span class="badge">{{$countTotal}}</span>
                     Total
                 </li>
