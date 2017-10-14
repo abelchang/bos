@@ -2,59 +2,45 @@
 @section('title','所有訂單')
 @section('content')
 <script type="text/javascript" src="{{ asset('bower/chart.js/dist/chart.bundle.min.js') }}" ></script>
+<canvas id="myChart" width="400" height="400"></canvas>
 <script>
-    var year = ['2013','2014','2015', '2016'];
-    var data_click = <?php echo $click; ?>;
-    var data_viewer = <?php echo $viewer; ?>;
-
-    var barChartData = {
-        labels: year,
+var ctx = document.getElementById("myChart").getContext('2d');
+var myChart = new Chart(ctx, {
+    type: 'bar',
+    data: {
+        labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
         datasets: [{
-            label: 'Click',
-            backgroundColor: "rgba(220,220,220,0.5)",
-            data: data_click
-        }, {
-            label: 'View',
-            backgroundColor: "rgba(151,187,205,0.5)",
-            data: data_viewer
+            label: '# of Votes',
+            data: [12, 19, 3, 5, 2, 3],
+            backgroundColor: [
+                'rgba(255, 99, 132, 0.2)',
+                'rgba(54, 162, 235, 0.2)',
+                'rgba(255, 206, 86, 0.2)',
+                'rgba(75, 192, 192, 0.2)',
+                'rgba(153, 102, 255, 0.2)',
+                'rgba(255, 159, 64, 0.2)'
+            ],
+            borderColor: [
+                'rgba(255,99,132,1)',
+                'rgba(54, 162, 235, 1)',
+                'rgba(255, 206, 86, 1)',
+                'rgba(75, 192, 192, 1)',
+                'rgba(153, 102, 255, 1)',
+                'rgba(255, 159, 64, 1)'
+            ],
+            borderWidth: 1
         }]
-    };
-
-    window.onload = function() {
-        var ctx = document.getElementById("canvas").getContext("2d");
-        window.myBar = new Chart(ctx, {
-            type: 'bar',
-            data: barChartData,
-            options: {
-                elements: {
-                    rectangle: {
-                        borderWidth: 2,
-                        borderColor: 'rgb(0, 255, 0)',
-                        borderSkipped: 'bottom'
-                    }
-                },
-                responsive: true,
-                title: {
-                    display: true,
-                    text: 'Yearly Website Visitor'
+    },
+    options: {
+        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero:true
                 }
-            }
-        });
-
-    };
+            }]
+        }
+    }
+});
 </script>
-
-<div class="container">
-    <div class="row">
-        <div class="col-md-10 col-md-offset-1">
-            <div class="panel panel-default">
-                <div class="panel-heading">Dashboard</div>
-                <div class="panel-body">
-                    <canvas id="canvas" height="280" width="600"></canvas>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
 
 @endsection

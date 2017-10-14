@@ -31,6 +31,7 @@ $indexDate = Carbon::now()->addMonth(4);
         <li><a href="{{route('orders.cancel')}}">取消訂單</a></li>
         <li><a href="{{route('orders.delay')}}">延期訂單</a></li>
         <li><a href="{{route('orders.statistics')}}">統計資料</a></li>
+        <li><a href="{{route('orders.staYear')}}">年度統計</a></li>
         <!-- Authentication Links -->
         @if (Auth::guest())
             <li><a href="{{ url('/login') }}">Login</a></li>

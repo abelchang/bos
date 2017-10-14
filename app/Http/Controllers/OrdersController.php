@@ -39,6 +39,7 @@ class OrdersController extends Controller
 
     public function statistics($thisYear = null,$thisMonth = null) {
         $index = "";
+        $monthPrice = "";
         if(!isset($thisMonth) && !isset($thisYear)) {
             $thisYear = Carbon::now()->year;
             $thisMonth = Carbon::now()->month;
@@ -46,6 +47,16 @@ class OrdersController extends Controller
 
         if (isset($thisYear) && !isset($thisMonth)) {
             $orders = Orders::whereYear('checkin','=',$thisYear)->get();
+            $monthPrice = Orders::select(
+                DB::raw('sum(price) as sums'), 
+                DB::raw("DATE_FORMAT(checkin,'%m') as months"),
+                DB::raw("DATE_FORMAT(checkin,'%Y') as year")
+            )
+            ->whereYear('checkin','=',$thisYear)
+            ->where('status','<',4)
+            ->groupBy('year','months')
+            ->orderBy('year','months','ASC')
+            ->get();
             $index = "year";
         } else {
             $orders = Orders::whereYear('checkin','=',$thisYear)->whereMonth('checkin','=',$thisMonth)->get();
@@ -81,8 +92,27 @@ class OrdersController extends Controller
             }
         }
         
-        return view('orders.statistics',['total'=>$total,'roomSta'=>$roomSta, 'placeSta'=>$placeSta, 'thisYear'=>$thisYear ,'thisMonth'=>$thisMonth, 'index'=>$index]);  
+        return view('orders.statistics',['total'=>$total,'roomSta'=>$roomSta, 'placeSta'=>$placeSta, 'thisYear'=>$thisYear ,'thisMonth'=>$thisMonth, 'index'=>$index, 'monthPrice'=>$monthPrice ]);  
            
+    }
+
+    public function staYear($thisYear = null) {
+        if(!isset($thisYear)) {
+            $thisYear = Carbon::now()->year;
+        }
+
+        $orders = Orders::select(
+            DB::raw('sum(price) as sums'), 
+            DB::raw("DATE_FORMAT(checkin,'%m') as months"),
+            DB::raw("DATE_FORMAT(checkin,'%Y') as year")
+        )
+        ->whereYear('checkin','=',$thisYear)
+        ->groupBy('year','months')
+        ->orderBy('year','months','ASC')
+        ->get();
+
+        return view('orders.staYear',['orders'=>$orders]);
+
     }
 
     public function showByMonth($thisYear, $thisMonth) {

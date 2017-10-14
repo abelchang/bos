@@ -15,6 +15,7 @@
 Auth::routes();
 Route::get('/', 'OrdersController@index');
 Route::get('orders/statistics/{thisYear?}/{thisMonth?}','OrdersController@statistics')->name('orders.statistics');
+Route::get('orders/staYear/{thisYear?}','OrdersController@staYear')->name('orders.staYear');
 Route::get('orders/create/{thisYear?}/{thisMonth?}/{thisDay?}','OrdersController@create')->name('orders.create');
 Route::get('orders/showByMonth/{thisYear}/{thisMonth}','OrdersController@showByMonth')->name('orders.showByMonth');
 Route::get('orders.cancel','OrdersController@cancel')->name('orders.cancel');
