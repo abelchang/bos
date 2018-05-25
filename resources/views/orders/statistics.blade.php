@@ -8,7 +8,9 @@ $olderDate = Carbon::createFromDate($thisYear,$thisMonth,'1')->subMonth();
 $nextDate = Carbon::createFromDate($thisYear,$thisMonth,'1')->addMonth();
 $thisDate = Carbon::createFromDate($thisYear,$thisMonth,'1');
 $thisMonthTotalRooms = $thisDate->daysInMonth*count($roomSta);
-$thisYearTotalRooms = $thisDate->dayOfYear*count($roomSta);
+$dayOfYear = 365;
+$thisYearTotalRooms = $dayOfYear*count($roomSta);
+
 ?>
 <div class="container">
     <div class="jumbotron col-md-6 col-md-offset-3 col-xs-12">
@@ -30,6 +32,7 @@ $thisYearTotalRooms = $thisDate->dayOfYear*count($roomSta);
                 <li role="separator" class="divider"></li>
                 <li><a href=" {{ route('orders.statistics',['thisYear'=>Carbon::now()->year, '$thisMonth'=>'']) }} "> {{Carbon::now()->year}} </a></li>
                 <li><a href=" {{ route('orders.statistics',['thisYear'=>Carbon::now()->subYear()->year, '$thisMonth'=>'']) }} "> {{Carbon::now()->subYear()->year}} </a></li>
+                <li><a href=" {{ route('orders.statistics',['thisYear'=>Carbon::now()->subYear(2)->year, '$thisMonth'=>'']) }} "> {{Carbon::now()->subYear(2)->year}} </a></li>
             </ul>
         </div>
         <h1>{{ $thisYear }} / {{ $thisMonth }} 總結</h1>
@@ -45,7 +48,7 @@ $thisYearTotalRooms = $thisDate->dayOfYear*count($roomSta);
                 @foreach($roomSta as $roomName => $count)
                 <a href="#orderRooms" class="list-group-item">
                     @if($index == "year")
-                    <span class="badge">{{number_format($count/$thisDate->dayOfYear*100).'%'}}</span>
+                    <span class="badge">{{number_format($count/$dayOfYear*100).'%'}}</span>
                     @elseif($index == "month")
                     <span class="badge">{{number_format($count/$thisDate->daysInMonth*100).'%'}}</span>
                     @endif

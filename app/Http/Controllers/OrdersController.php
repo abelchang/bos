@@ -53,7 +53,7 @@ class OrdersController extends Controller
                 DB::raw("DATE_FORMAT(checkin,'%Y') as year")
             )
             ->whereYear('checkin','=',$thisYear)
-            ->where('status','<',4)
+            ->whereNotIn('status',['4','5'])
             ->groupBy('year','months')
             ->orderBy('year','months','ASC')
             ->get();
@@ -80,7 +80,7 @@ class OrdersController extends Controller
                 $total += $order->price;
             }
             foreach ($rooms as $key => $room) {
-                if(($room->id === $order->orderRoom->id) and ($order->orderStatus->id != '4') and ($order->orderStatus->id != '5'))  {
+                if(($room->id === $order->orderRoom->id) and ($order->orderStatus->id < '4'))  {
                     $roomSta[$room->name] += Carbon::parse($order->checkout)->diffInDays(Carbon::parse($order->checkin)); 
                 }
             }
@@ -107,6 +107,7 @@ class OrdersController extends Controller
             DB::raw("DATE_FORMAT(checkin,'%Y') as year")
         )
         ->whereYear('checkin','=',$thisYear)
+        ->whereNotIn('status',['4','5'])
         ->groupBy('year','months')
         ->orderBy('year','months','ASC')
         ->get();

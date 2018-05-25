@@ -23,10 +23,13 @@ use Carbon\Carbon;
 				<a href="#orderRooms" class="list-group-item">
 					<span class="badge">{{$orders[$key]->sums}}</span>
 					{{$orders[$key]->year}}/{{$orders[$key]->months}}
-					
+					<?php $countTotal += $orders[$key]->sums ?>
 				</a>
 				@endforeach
-				
+				<li class="list-group-item list-group-item-warning">
+					<span class="badge">{{$countTotal}}</span>
+					Total
+				</li>
 			</ul>
 		</div>
 </div>
