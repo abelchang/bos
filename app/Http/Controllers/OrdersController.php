@@ -112,7 +112,7 @@ class OrdersController extends Controller
         ->orderBy('year','months','ASC')
         ->get();
 
-        return view('orders.staYear',['orders'=>$orders]);
+        return view('orders.staYear',['orders'=>$orders,'thisYear'=>$thisYear]);
 
     }
 

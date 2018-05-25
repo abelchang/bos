@@ -12,7 +12,13 @@ use Carbon\Carbon;
 ?>
 <div class="container">
 	<div class="jumbotron col-md-6 col-md-offset-3 col-xs-12">
-		<h1>年度總結</h1>
+		<nav aria-label="...">
+            <ul class="pager">
+                <li class="previous"><a href="{{ route('orders.staYear',['thisYear'=>$thisYear - 1]) }}"><span aria-hidden="true">&larr;</span> Older</a></li>
+                <li class="next"><a href="{{ route('orders.staYear',['thisYear'=>$thisYear + 1]) }}">Newer <span aria-hidden="true">&rarr;</span></a></li>
+            </ul>
+        </nav>
+		<h2>{{$thisYear}}年度總結</h2>
 		<!-- Single button -->
 		<div class="panel panel-success" id="orderRooms">
 			<!-- Default panel contents -->
