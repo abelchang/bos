@@ -16,7 +16,6 @@ use Carbon\Carbon;
 					<th>姓名</th>
 					<th>入住日期</th>
 					<th>天數</th>
-					<th>訂房管道</th>
 					<th>action</th>
 				</tr>
 			</thead>
@@ -24,17 +23,21 @@ use Carbon\Carbon;
 			<tbody>
 				@foreach ($orders as $key=>$order)
 				<tr>
-					<th scope="row">{{$key+1}}</th>
+					<th scope="row">
+						{{$key+1}}
+					</th>
 					<td>
-						<a class="" data-toggle="modal" data-target="#orderCollapse{{$order->id}}">{{$order->customer}}</a>
+						{{$order->customer}}
 					</td>
 					<td>{{Carbon::parse($order->checkin)->format('Y/m/d')}}</td>
 					<td>{{Carbon::parse($order->checkout)->diffInDays(Carbon::parse($order->checkin))}}</td>
-					<td>{{$order->place->name}}</td>
 					<td>
 						<a class="btn btn-xs btn-primary" href="{{ route('orders.edit',['order'=>$order->id]) }}">
 	                        <i class="glyphicon glyphicon-pencil"></i>
 	                        <!-- <span style="padding-left: 5px;">edit order</span> -->
+	                    </a>
+	                    <a class="btn btn-xs btn-info" data-toggle="modal" data-target="#orderCollapse{{$order->id}}">
+	                    	<i class="glyphicon glyphicon-zoom-in"></i>
 	                    </a>
 	                </td>
 					  <!-- Modal -->
