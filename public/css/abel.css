@@ -45,6 +45,12 @@ body { padding-top: 70px; }
     color:white !important;
 }
 
+.roomsBadgeWaite {
+    margin-top: 0.6em;
+    color:white !important;
+    background-color: grey !important;
+}
+
 .checkoutBadge {
     background-color:grey !important;
     /*color:white !important;*/

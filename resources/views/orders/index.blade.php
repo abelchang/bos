@@ -214,10 +214,10 @@ $nextDate = Carbon::createFromDate($thisYear,$thisMonth,'1')->addMonth();
                             )
                             and ((Carbon::parse($order->checkin)->lte($thisDay)) and (Carbon::parse($order->checkout)->gt($thisDay)))
                             )
-                                @if( ($order->status == '6') )
-                                    <span class="badge roomsBadge" >{{$order->orderRoom->name}}{{Carbon::parse($order->checkin)->diffInDays($thisDay)+1}}/{{Carbon::parse($order->checkout)->diffInDays(Carbon::parse($order->checkin))}}</span>
+                                @if( ($order->orderStatus->status == "候補") )
+                                    <span class="badge roomsBadgeWaite" >{{$order->orderRoom->name}}{{Carbon::parse($order->checkin)->diffInDays($thisDay)+1}}/{{Carbon::parse($order->checkout)->diffInDays(Carbon::parse($order->checkin))}}-補</span>
                                 @else
-                                    <span class="badge badge-secondary roomsBadge" >{{$order->orderRoom->name}}{{Carbon::parse($order->checkin)->diffInDays($thisDay)+1}}/{{Carbon::parse($order->checkout)->diffInDays(Carbon::parse($order->checkin))}}</span>
+                                    <span class="badge roomsBadge" >{{$order->orderRoom->name}}{{Carbon::parse($order->checkin)->diffInDays($thisDay)+1}}/{{Carbon::parse($order->checkout)->diffInDays(Carbon::parse($order->checkin))}}</span>
                                 @endif
                                 
                             @endif
