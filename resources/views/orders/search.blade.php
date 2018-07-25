@@ -34,7 +34,7 @@ use Carbon\Carbon;
 					<td>
 						<a class="btn btn-xs btn-primary" href="{{ route('orders.edit',['order'=>$order->id]) }}">
 	                        <i class="glyphicon glyphicon-pencil"></i>
-	                        <span style="padding-left: 5px;">edit order</span>
+	                        <!-- <span style="padding-left: 5px;">edit order</span> -->
 	                    </a>
 	                </td>
 					  <!-- Modal -->
