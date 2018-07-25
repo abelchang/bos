@@ -53,7 +53,7 @@ class OrdersController extends Controller
                 DB::raw("DATE_FORMAT(checkin,'%Y') as year")
             )
             ->whereYear('checkin','=',$thisYear)
-            ->whereNotIn('status',['4','5'])
+            ->whereNotIn('status',['4','5','6'])
             ->groupBy('year','months')
             ->orderBy('year','months','ASC')
             ->get();
@@ -76,7 +76,7 @@ class OrdersController extends Controller
         }
 
         foreach ($orders as $key => $order) {
-            if(($order->orderStatus->id != '4') and ($order->orderStatus->id != '5')) {
+            if(($order->orderStatus->id != '4') and ($order->orderStatus->id != '5') and ($order->orderStatus->id != '6')) {
                 $total += $order->price;
             }
             foreach ($rooms as $key => $room) {
@@ -107,7 +107,7 @@ class OrdersController extends Controller
             DB::raw("DATE_FORMAT(checkin,'%Y') as year")
         )
         ->whereYear('checkin','=',$thisYear)
-        ->whereNotIn('status',['4','5'])
+        ->whereNotIn('status',['4','5','6'])
         ->groupBy('year','months')
         ->orderBy('year','months','ASC')
         ->get();

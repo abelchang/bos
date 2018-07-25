@@ -28,5 +28,8 @@ class OrderStatusTableSeeder extends Seeder
     	OrderStatusEloquent::create([
     		'status'=>'延期'
     	]);
+        OrderStatusEloquent::create([
+            'status'=>'候補'
+        ]);
     }
 }
