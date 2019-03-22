@@ -1,5 +1,5 @@
 @extends('layouts.master')
-@section('title','所有訂單')
+@section('title','訂單')
 @section('content')
 <?php
 use Carbon\Carbon;
