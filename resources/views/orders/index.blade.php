@@ -150,13 +150,13 @@ $nextDate = Carbon::createFromDate($thisYear,$thisMonth,'1')->addMonth();
             @elseif ( $thisDay->between(Carbon::create(2019, 4, 30), Carbon::create(2019, 5, 1)) )
             <div class="panel panel-danger">
             <!-- 2019 端午節 6/07 - 6/09-->
-            @elseif ( $thisDay->between(Carbon::create(2019, 6, 06), Carbon::create(2019, 6, 09)) )
+            @elseif ( $thisDay->between(Carbon::create(2019, 6, 6), Carbon::create(2019, 6, 9)) )
             <div class="panel panel-danger">
             <!-- 2019 中秋節 9/13 - 9/15-->
             @elseif ( $thisDay->between(Carbon::create(2019, 9, 12), Carbon::create(2019, 9, 15)) )
             <div class="panel panel-danger">
             <!-- 2019 國慶日補班 10/05 -->
-            @elseif ( $thisDay->between(Carbon::create(2019, 10, 04), Carbon::create(2019, 10, 05)) )
+            @elseif ( $thisDay->between(Carbon::create(2019, 10, 4), Carbon::create(2019, 10, 5)) )
             <div class="panel panel-success">
             <!-- 2019 國慶日 10/10 - 10/13 -->
             @elseif ( $thisDay->between(Carbon::create(2019, 10, 9), Carbon::create(2019, 10, 13)) )
@@ -252,13 +252,13 @@ $nextDate = Carbon::createFromDate($thisYear,$thisMonth,'1')->addMonth();
                             @elseif ( $thisDay->between(Carbon::create(2019, 4, 30), Carbon::create(2019, 5, 1)) )
                             <span class="label label-primary label-as-badge holidayBadge">勞動節</span>
                             <!-- 2019 端午節 6/07 - 6/09-->
-                            @elseif ( $thisDay->between(Carbon::create(2019, 6, 06), Carbon::create(2019, 6, 09)) )
+                            @elseif ( $thisDay->between(Carbon::create(2019, 6, 6), Carbon::create(2019, 6, 9)) )
                             <span class="label label-primary label-as-badge holidayBadge">端午節</span>
                             <!-- 2019 中秋節 9/13 - 9/15-->
                             @elseif ( $thisDay->between(Carbon::create(2019, 9, 12), Carbon::create(2019, 9, 15)) )
                             <span class="label label-primary label-as-badge holidayBadge">中秋節</span>
                             <!-- 2019 國慶日補班 10/05 -->
-                            @elseif ( $thisDay->between(Carbon::create(2019, 10, 04), Carbon::create(2019, 10, 05)) )
+                            @elseif ( $thisDay->between(Carbon::create(2019, 10, 4), Carbon::create(2019, 10, 5)) )
                             <span class="label label-default label-as-badge holidayBadge">國慶日補班</span>
                             <!-- 2019 國慶日 10/10 - 10/13 -->
                             @elseif ( $thisDay->between(Carbon::create(2019, 10, 9), Carbon::create(2019, 10, 13)) )
